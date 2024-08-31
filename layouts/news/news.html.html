@@ -1,0 +1,151 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+	<link href="//unpkg.com/@waline/client@2.13.0/dist/waline.css" rel="stylesheet">
+	<script src="https://unpkg.com/@waline/client@2.13.0/dist/waline.js"></script>
+	<script>		
+	url = ''
+	async function getprofile() {
+		querystring=window.location.search
+		const params = new URLSearchParams(querystring);
+		const parameterValue = params.get('tags');
+		
+		const data = await fetch( {{ $.Site.Params.dataURL }} + 'profile?rd=[%22lemmaTitle%22]&string='+ parameterValue.replaceAll("+", "%2B") )
+		const profile = await data.json();
+		document.getElementById("lemmaTitle").innerHTML=profile[0].lemmaTitle;
+		document.getElementById("summary").innerHTML=profile[0].summary;
+		document.getElementById("position").textContent =profile[0].lemmaDesc;
+		document.getElementById("position").href =profile[0].url;
+		document.getElementById("lemmaTitle").href =profile[0].url;
+		if (coverPic !== "") {document.getElementById("coverPic").src=profile[0].coverPic;;}
+	};		
+	getprofile();
+	async function getUpdatedTags0() {
+		querystring=window.location.search
+		const params = new URLSearchParams(querystring);
+		const parameterValue = params.get('db');
+
+		const data = await fetch( {{ $.Site.Params.dataURL }} + 'news'+ querystring.replaceAll("+", "%2B") )
+		const comments = await data.json();
+		const commentsDiv=document.getElementById("test")
+		var sup = document.getElementById("sup");
+		sup.innerText=Object.keys(comments).length;
+		var testhtml='';
+
+		comments.forEach( comment => {
+			<!--console.log(comment.avatar)-->
+
+			if (!comment.summary) {comment.summary=( comment.desc ? comment.desc.toString() : comment.title )}
+			if (comment.date) {comment.date=(Array.isArray(comment.date) ? comment.date[0] : comment.date)} else {comment.date=''}
+		    var loveStr = "";	
+			var img = "";	
+			if (comment.image) {
+			img = `<div class="featured-image-preview2"><img class="lazyautosizes ls-is-cached lazyloaded" src=${comment.image} ></div>`
+			}; 
+			if (comment.tags) {
+	　　　　for (let i = 0; i < comment.tags.length; i++) {
+					
+					loveStr += `<a href=${"/news/?tags=" + comment.tags[i]}>${comment.tags[i]}&nbsp;</a>`;
+					}; 
+			};
+			
+			testhtml= `
+					<article class="single summary2" ripple="rgba(0,0,0,0.1)" id=${comment.url}>
+					<h1 class="single-title" itemprop="name headline">
+						<a href=${ comment.url} target="_blank" title=${comment.title} >${comment.desc ? (Array.isArray(comment.desc) ? comment.desc[0] : comment.desc) : comment.title}</a>
+						<a href=https://web.archive.org/web/${comment.url} target="_blank" title="页面丢失？找Web Archieve看看！" style="float:right" ><i class="far fa-edit fa-fw" style="font-size:18px" aria-hidden="true"></i></a>
+					</h1>	
+					<div onclick="window.open('${comment.url}','_self')" class="post-entry">				
+						<div class="post-info2">
+							<div class="post-meta">
+								<span class="post-author"><a href="${comment.authorLink}" title="Author" target="_blank" rel="noopener noreffer author" class="author" style="display:block; text-align: center;"><img src=${comment.avatar} alt="avatar" class="avatar"><span style="display:inline-block;">${comment.author}</span></a>
+								</span>
+								<span class="post-publish"><time>${comment.date.substring(0, 11)}</time></span>
+							</div>
+							<div  class="content">
+								${comment.summary}
+							</div>
+						</div>
+						${img}
+					</div>
+					<div class="post-footer"><div class="post-tags post-category"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;${loveStr}		
+					</div></div>	</article>`+ testhtml;
+			
+			})
+		commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+		queryString = window.location.search;
+		contenturl = queryString.substr(1);
+		var	mobilewa = Waline.init({
+			  el: '#comments',
+			  serverURL: '{{ $.Site.Params.cURL }}',
+			  login: 'force',
+			  path: contenturl,
+			  locale: {placeholder:'Hello, welcome to write here!'},
+			  lang: 'en',
+			  pageview: true, 
+			});		
+	};	
+	
+	getUpdatedTags0();
+
+	
+	
+	</script>			
+
+
+<div class="page home" data-home="posts">
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup >{{ len $pages }}</sup></a>				
+			</h2>
+			{{- /* partial "home/newslist.html" . */ -}}
+			<div class="home-profile">
+					<div class="projectMain" style="color: rgb(0, 0, 0); background-color: #fff;font-size: 16px;box-shadow: 0px 4px 8px rgba(5, 10, 15, 5%), 0px 7px 13px -3px rgba(5, 10, 15, 30%); line-height: 18.4px; margin: 0; padding: 0; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><div class="content-img" style="color: rgb(0, 0, 0); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 388px; height: 222px; font-size: 16px; line-height: 18.4px; margin: 0px; padding: 5px; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: hidden; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><img referrerpolicy="no-referrer" id="coverPic" src="https://bkssl.bdimg.com/resource/pages/images/58204d9b3638fd76dd07.png" style="color: rgb(0, 0, 0); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 420px; height: 234.828px; font-size: 16px; line-height: 18.4px; margin: 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: clip; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"></div> <div class="content-right" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 851.891px; *//* height: 251.992px; */font-size: 16px;line-height: 18.4px;margin: 0px;padding: 15px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div class="content-text-title" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 805.062px; */height: 146.797px;font-size: 16px;line-height: 18.4px;margin: 0px 0px 20px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div class="content-plan" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 136.797px;font-size: 16px;line-height: 18.4px;margin: 10px 0px 0px;padding: 0px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;"><div class="content-plan-top" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 60px;font-size: 16px;line-height: 18.4px;margin: 0px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;">
+					<h1 >
+					<a id='position' href="" title="" target="_blank" rel="noopener noreferrer me" >职务信息</a>
+                                     <a href="https://t.me/+vPLshmMs1gYzZjQ1" title="Telegram" target="_blank" rel="noopener noreferrer me" class="red"><i class="fab fa-telegram-plane fa-fw "></i>加入我们</a></h1></div> 		 
+									 </div></div> 
+					<div class="content-text-descript"><p id='summary'>
+                                人物描述：本项目由共产主义者推动建立，我们希望建立一些属于无产阶级的信息基础设施！
+                            </p></div></div><h2 class="animate__animated animate__pulse animate__faster" style="flex: 1;font-size: 1.25rem;font-weight: bold;text-align: center;"><a href="" id="lemmaTitle" target="_blank" style="line-height: normal;">姓名</a><sup id="sup" >0</sup>				
+			</h2></div>
+		</div>
+</div>
+
+    <div class="page home" id="test"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+        {{- /* Profile */ -}}
+
+
+
+
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- /* $pages := where .Site.RegularPages "Type" "posts" */ -}}
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- with $posts.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+				
+            {{- range $pages.Pages -}}
+                
+				{{- .Render "summary" -}}	
+								
+            {{- end -}}
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+<div class="page comments " data-single="single" style="padding-top:0"><div id="comments" v-cloak ></div></div>
+
+{{- end -}}
+
+

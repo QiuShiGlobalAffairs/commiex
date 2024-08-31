@@ -1,0 +1,74 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+	
+
+<div class="page home archive" data-home="posts">
+        {{- if ne $profile.enable false -}}
+            {{- partial "home/profile.html" . -}}
+        {{- end -}}
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;欧政<sup id="sup" >{{ len $pages }}</sup></a>				
+			</h2>
+
+
+
+	<div class="home  tag-cloud-tags" id="test0"{{ if ne $posts.enable false }} data-home="posts"{{ end }}></div>
+    <div class="home  tag-cloud-tags" id="test"{{ if ne $posts.enable false }} data-home="posts"{{ end }}></div>
+	<div class="home  tag-cloud-tags" id="test2"{{ if ne $posts.enable false }} data-home="posts"{{ end }}></div>
+</div>
+
+
+	<script>		
+		url=''
+		async function getUpdatedTags(count,html) {
+			const data = await fetch( {{ $.Site.Params.dataURL }} + 'count?xhs=tags')
+			const comments = await data.json();
+			const commentsDiv=document.getElementById(html)
+			var testhtml='';
+			<!-- console.log(numArr)  -->		
+			for (var key in comments) {
+			　　var num = comments[key];
+					testhtml = `<a id="${key}" href="/news/?${count}=${key}&db=euelite">${key}<sup>${num}</sup></a>`+ testhtml;
+			}
+			var sup = document.getElementById("sup");
+			sup.innerText = parseInt(sup.innerText)+Object.keys(comments).length;
+			commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+		};
+		
+		async function getUpdatedTags2() {
+			const data = await fetch( {{ $.Site.Params.dataURL }} + 'nato?eu=euterms')
+			const comments = await data.json();
+			const commentsDiv=document.getElementById("test2")
+			var testhtml='';
+			<!-- console.log(numArr)  -->		
+			for (var key in comments) {
+			　　var num = comments[key];
+					testhtml = `<a id="${key}" href="/news/?fullName=${key}&db=eu">${key}<sup>${num}</sup></a>`+ testhtml;
+			}
+			var sup = document.getElementById("sup");
+			sup.innerText= parseInt(sup.innerText)+ Object.keys(comments).length;
+			commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+		};
+
+		function getquery(name) {
+			let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			let r = window.location.search.substr(1).match(reg);
+			if (r != null) {
+				return decodeURIComponent(r[2]);
+			};
+			return null;
+		};		
+		
+		if (window.location.search=='') { getUpdatedTags("author","test0");
+		
+		getUpdatedTags2() } else {
+		getUpdatedTags( window.location.search.substr(1),"test0")	}	
+		
+	</script>		
+{{- end -}}
+
+

@@ -1,0 +1,75 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+	<script>		
+	url = ''
+
+	async function getUpdatedTags0() {
+		const data = await fetch( {{ $.Site.Params.dataURL }} + 'news'+ window.location.search )
+		const comments = await data.json();
+		const commentsDiv=document.getElementById("test")
+		var sup = document.getElementById("sup");
+		sup.innerText=Object.keys(comments).length;
+		var testhtml='';
+		for (var i in comments) {
+				testhtml = `<a href=${ comments[i].url} target="_blank" title=${comments[i].title} >${comments[i].desc||comments[i].title}</a>`+ testhtml;
+		}
+
+		commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+	};	
+	
+	getUpdatedTags0();
+	
+	
+	
+	
+	</script>			
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/nanoscroller.js"></script>
+
+<div class="page home archive" data-home="posts">
+        {{- if ne $profile.enable false -}}
+            {{- partial "home/profile.html" . -}}
+        {{- end -}}
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup id="sup" >{{ len $pages }}</sup></a>				
+			</h2>
+
+
+    <div class=" home tag-cloud-tags" id="test"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+        {{- /* Profile */ -}}
+
+
+
+
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- /* $pages := where .Site.RegularPages "Type" "posts" */ -}}
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- with $posts.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+				
+            {{- range $pages.Pages -}}
+                
+				{{- .Render "summary" -}}	
+								
+            {{- end -}}
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+</div>
+{{- end -}}
+
+

@@ -1,0 +1,181 @@
+{{- define "title" }}
+    {{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" }} - {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+
+<script>
+	async function getUpdatedContent() {
+
+		try {
+		const queryString = window.location.search;
+		console.log(queryString);
+		contenturl = queryString.substr(1);
+		const data = await fetch({{ $.Site.Params.dataURL }}+'?{{.Section}}='+contenturl)
+		const comments = await data.json();
+		console.log(comments)
+		comments.forEach( comment => {
+			if (!comment.avatar) {comment.avatar="https://q1.qlogo.cn/g?b=qq&nk=1318011774&s=100"}
+		    var loveStr = "";	
+			var content = "";
+			if (comment.countries) {
+	　　　　for (let i = 0; i < comment.countries.length; i++) {
+					var country = comment.countries[i].toLowerCase().replace(/\s+/g,"-");
+					loveStr += `<a href="/countries/${country}">${comment.countries[i]}&nbsp;</a>`}; 
+				};
+			if (comment.tags) {
+			oldtags=comment.tags;
+	　　　　for (var i = 0; i < comment.tags.length; i++) {
+					var tag = comment.tags[i].toLowerCase().replace(/\s+/g,"-");
+					loveStr += `<a href="/tags/${tag}">${comment.tags[i]}&nbsp;</a>`
+					oldtags[i]=`{"key":"","value":"${comment.tags[i]}"}`; 
+					oldtags[i]=JSON.parse(oldtags[i])					
+					}; 
+					
+				};
+			localStorage.tags = JSON.stringify(oldtags);		
+		    var img = "";	
+			if (comment.image) {
+			img = `<div class="featured-image-preview2"><img class="lazyautosizes ls-is-cached lazyloaded" src=${comment.image} ></div>`
+			}; 
+			
+			
+				
+			title = `<h1 class="single-title animate__animated animate__flipInX">${comment.title}<a  v-cloak v-if="isAdmin || (Owner==='${comment.author}')" href="/edit?url=${comment.url}&online='ture'" style="float:right" ><i class="far fa-edit fa-fw" style="font-size:18px" aria-hidden="true"></i></a></h1>`;
+
+			meta = `
+						<div class="post-meta-line"><span class="post-author"><a href="${comment.authorLink}" title="Author" target="_blank" rel="noopener noreffer author" class="author" style="display:block; text-align: center;">
+						
+						<img src=${comment.avatar} alt="avatar" class="avatar"><span style="display:inline-block;">&nbsp;${comment.author}</span>
+						
+						</a></span><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-02">${comment.date[0].substring(0, 10)}</time>&nbsp;${comment.date.length > 2 ? '<i aria-hidden="true" class="far fa-edit fa-fw" style="font-size: 18px;"></i><time datetime="">'+comment.date[comment.date.length-1].substring(0, 10)+'</time>&nbsp;' :'' }<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;${comment.wordCount}&nbsp;words&nbsp;<i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;${comment.readingTime ? comment.readingTime : Math.round(comment.wordCount/500)+'min'}&nbsp;<i class="far fa-eye fa-fw"></i>&nbsp;<span class="waline-pageview-count" data-path=${contenturl}></span>&nbsp;views</span></div>			
+			
+			
+			<div class="post-meta">
+						
+					<i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;${loveStr}
+				
+			
+	<form action='https://commiex.com/db/edit' method="post" id="mdform"  enctype="multipart/form-data" accept-charset="UTF-8" style="display: flex;"> 	<div id="edittag" > 
+				<tags-input element-id="tags" v-model="tags" 
+					:existing-tags="[]"
+					:typeahead="true"
+					:add-tags-on-space="true"
+					:add-tags-on-blur="true"
+					>		
+				</tags-input>
+				</div> 	
+				<input type="hidden" name="url" id="url" value=${comment.url}>
+				<input type="hidden" name="online" value="true">
+				<input type="submit" value="添加标签" class="bn2">	
+
+</form>				
+				</div> 	
+							
+	
+				
+				` ;
+			
+			<!-- console.log(loveStr) -->
+			content= comment.content || comment.markdown + content 
+			
+			document.getElementById("title").innerHTML = title; 
+			document.getElementById("content").innerHTML= content;
+			document.getElementById("meta").innerHTML =meta;
+			
+			gettoedit('#title');
+			document.getElementById("try").removeAttribute("v-cloak");
+			})
+
+			
+			
+			} catch(e){ console.log(e); getUpdatedContent() }
+				
+	}
+			function addtags() {
+			taglist = new Vue({
+				el: '#edittag',
+				components: { "tags-input": VoerroTagsInput },	
+				data:{
+					tags:[]
+				},
+			
+			mounted() {
+			if(localStorage.tags) this.tags = JSON.parse(localStorage.tags);
+			},	
+			
+			watch:{
+			tags(newtags) {
+			  localStorage.tags = JSON.stringify(newtags);
+			}}
+			
+			});	
+			};
+
+			function move() {
+				var	mobilewa = Waline.init({
+					  el: '#comments',
+					  serverURL: 'https://waline.commiex.com',
+					  login: 'force',
+					  path: contenturl,
+					  locale: {placeholder:'Hello, welcome to write here!'},
+					  pageview: true,
+					  lang: 'en',
+					});
+			};
+			
+				
+		getUpdatedContent().then(function (result){
+			try {move() }catch(e){ move() };
+			try { addtags() }catch(e){ move() };
+});
+		
+	
+</script>
+
+<link href="//unpkg.com/@waline/client@2.13.0/dist/waline.css" rel="stylesheet">
+<script src="https://unpkg.com/@waline/client@2.13.0/dist/waline.js"></script>
+
+<div class="contain" v-cloak id="try">
+
+		<script>
+		url='';
+				
+		</script>
+    <article class="page single" style="margin-top: var(--header-height);" data-single="single">
+ 
+        <h1 class="single-title animate__animated animate__flipInX" id="title"></h1>
+
+<script src="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.2.0/dist/voerro-vue-tagsinput.js"></script>
+	
+
+        <div class="post-meta" id="meta">
+            <div class="post-meta-line">
+            </div>
+		
+            <div class="post-meta-line">
+            </div>
+        </div>
+		
+
+
+	<div class="card wl-cards" data-waline><div class="wl-item"><div class="wl-card"><div class="wl-content" id="content">
+
+
+	</div></div></div></div>
+
+
+<script>
+	
+</script>
+    </article>
+</div>	
+<div class="page single" data-single="single"><div id="comments" v-cloak ></div></div>
+
+		
+<script>
+
+</script>
+	
+
+{{- end -}}

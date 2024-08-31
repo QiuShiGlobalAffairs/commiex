@@ -1,0 +1,180 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+	
+
+<div class="page home archive" data-home="posts">
+        {{- if ne $profile.enable false -}}
+            {{- partial "home/profile.html" . -}}
+        {{- end -}}
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;政策博弈<sup id="sup" >{{ len $pages }}</sup></a>				
+			</h2>
+<article class="page " style="" data-single="single">
+
+<div id="searchbox" style="color: rgb(30, 30, 30); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 719.993px; height: 40.4332px; font-size: 18px; line-height: 28.8px; margin: 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(30, 30, 30); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(30, 30, 30); list-style: outside none disc; text-align: start;">
+    <input id="searchInput" autofocus="" placeholder="检索相关政策" aria-label="search" type="search" autocomplete="off" maxlength="64" style="color: rgb(30, 30, 30); background: none 0px 0px / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); ; height: 40px; font-size: 18px; line-height: 28.8px; margin: 0px; padding: 4px 10px; position: static; float: none; inset: auto; display: inline-block; border: 1.36364px solid rgb(214, 214, 214); cursor: text; overflow: visible; box-sizing: border-box; border-radius: 8px; text-decoration: none solid rgb(30, 30, 30); list-style: outside none disc; text-align: start;">
+    <ul id="searchResults" aria-label="search results" style="color: rgb(30, 30, 30); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 719.993px; height: 0px; font-size: 18px; line-height: 28.8px; margin: 10px 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(30, 30, 30); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(30, 30, 30); list-style: outside none disc; text-align: start;"></ul>
+</div>
+
+
+</article>
+
+
+
+</div>
+<div class="page home archive" id="test3" data-home="posts">
+	<div class="home  tag-cloud-tags" id="test0" data-home="posts"></div>
+    <div class="home  tag-cloud-tags" id="test" data-home="posts" ></div>
+	<div class="home  tag-cloud-tags" id="test2" data-home="posts"></div>
+</div>
+
+
+	<script>		
+		url=''
+		async function getUpdatedTags(count,html) {
+			const data = await fetch( {{ $.Site.Params.dataURL }} + 'count?bills='+count)
+			const comments = await data.json();
+			const commentsDiv=document.getElementById(html)
+			var testhtml='';
+			<!-- console.log(numArr)  -->		
+			for (var key in comments) {
+			　　var num = comments[key];
+					testhtml = `<a id="${key}" href="/news/?${count}=${key}">${key}<sup>${num}</sup></a>`+ testhtml;
+			}
+			var sup = document.getElementById("sup");
+			sup.innerText = parseInt(sup.innerText)+Object.keys(comments).length;
+			commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+		};
+		
+		async function getUpdatedTags2() {
+			const data = await fetch( {{ $.Site.Params.dataURL }} + 'tags?'+'desc=\{\"\$ne\":None\}')
+			const comments = await data.json();
+			const commentsDiv=document.getElementById("test2")
+			var testhtml='';
+			<!-- console.log(numArr)  -->		
+			for (var key in comments) {
+			　　var num = comments[key];
+					testhtml = `<a id="${key}" href="/news/?desc=${key}">${key}<sup>${num}</sup></a>`+ testhtml;
+			}
+			var sup = document.getElementById("sup");
+			sup.innerText= parseInt(sup.innerText)+ Object.keys(comments).length;
+			commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+		};
+
+		function getquery(name) {
+			let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			let r = window.location.search.substr(1).match(reg);
+			if (r != null) {
+				return decodeURIComponent(r[2]);
+			};
+			return null;
+		};		
+		
+		if (window.location.search=='') { getUpdatedTags("author","test0");
+		getUpdatedTags("desc2","test");
+		getUpdatedTags2() } else {
+		getUpdatedTags( window.location.search.substr(1),"test0")	}	
+		
+	</script>		
+	
+	<script>
+  // 模拟一些搜索结果数据
+  
+  
+  mockData = [""];
+
+async function getcases() {
+	const data = await fetch(uri);
+	console.log("delete"+uri)
+	const t = await data.json();
+	// console.log(t)
+	var sup = document.getElementById("sup");
+	sup.innerText=Object.keys(t).length;
+	var testhtml='';
+	var commentsDiv=document.getElementById("test3");
+	t.forEach(comment => {
+		// Default values for summary and date
+		comment.summary = comment.summary || comment.desc?.toString() || comment.title;
+		comment.date = Array.isArray(comment.date) ? (comment.date.length ? comment.date[0] : '') : (comment.date || '');
+		// Generate the image HTML if an image exists
+		const img = comment.image ? 
+			`<div class="featured-image-preview2"><img class="lazyautosizes ls-is-cached lazyloaded" src="${comment.image}" alt="image"></div>` 
+			: '';
+
+		// Generate the tags HTML if tags exist
+		const loveStr = comment.tags?.map(tag => 
+			`<a href="/news/?tags=${encodeURIComponent(tag)}">${tag}&nbsp;</a>`
+		).join('') || '';
+
+		// Append the generated HTML to testhtml
+		testhtml = `
+			<article class="single summary2" ripple="rgba(0,0,0,0.1)" id="${comment.url}">
+				<h1 class="single-title" itemprop="name headline">
+					<a href="${comment.url}" target="_blank" title="${comment.title}">
+						${comment.desc ? (Array.isArray(comment.desc) ? comment.desc[0] : comment.desc) : comment.title}
+					</a>
+					<a v-if="isAdmin || (Owner==='${comment.author}')" href="${comment.url}" style="float:right" view="${comment.author}">
+						<i class="far fa-edit fa-fw" style="font-size:18px" aria-hidden="true"></i>
+					</a>
+				</h1>
+				<div onclick="window.open('${comment.url}', '_self')" class="post-entry">				
+					<div class="post-info2">
+						<div class="post-meta">
+							<span class="post-author">
+								<a href="${comment.authorLink}" title="Author" target="_blank" rel="noopener noreferrer author" class="author" style="display:block; text-align: center;">
+									<img src="${comment.avatar}" alt="avatar" class="avatar">
+									<span style="display:inline-block;">${comment.author}</span>
+								</a>
+							</span>
+							<span class="post-publish"><time>${comment.date.substring(0, 11)}</time></span>
+						</div>
+						<div class="content">
+							${comment.summary}
+						</div>
+					</div>
+					${img}
+				</div>
+				<div class="post-footer">
+					<div class="post-tags post-category">
+						<i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;${loveStr}
+					</div>
+				</div>
+			</article>` + testhtml;
+	});
+
+	// Append all generated HTML to the commentsDiv
+	commentsDiv.innerHTML = testhtml + commentsDiv.innerHTML;
+};
+
+  // 获取DOM元素
+  var searchBox = document.getElementById("searchInput");
+  var searchResults = document.getElementById("test3");
+
+  // 添加事件监听器，监听输入框的变化
+  searchBox.addEventListener("input", function() {
+    // 获取输入框的值
+    const searchTerm = searchBox.value.toLowerCase();
+	console.log(searchTerm)
+    // 清空之前的搜索结果
+    searchResults.innerHTML = "";
+	if (searchTerm.trim() !== "") {
+    // 过滤匹配的搜索结果
+    const filteredResults = mockData.filter(result => result.toLowerCase().includes(searchTerm));
+	uri = {{ $.Site.Params.dataURL }} + 'wander?bills=[%22tags%22,%22desc%22,%22title%22]&string='+searchTerm;
+	getcases()
+	}
+
+    // 显示搜索结果
+
+  });
+</script>	
+	
+	
+	
+{{- end -}}
+
+

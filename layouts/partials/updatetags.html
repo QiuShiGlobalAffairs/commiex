@@ -1,0 +1,38 @@
+			<script>
+			 
+				async function getUpdatedTags() {
+					const data = await fetch({{ $.Site.Params.dataURL }}+'?'+{{.Section}}+'='+'\{\"\$ne\":None\}')
+					const comments = await data.json();
+					<!-- console.log(comments) -->
+					const commentsDiv=document.getElementById("tagspanel")
+					var sup = document.getElementById("sup");
+					var testhtml='';
+					var tags=[];
+					comments.forEach( comment => {
+						
+				　　　　for (let i = 0; i < comment.{{ safeJS (printf .Section)}}.length; i++) {
+								tags.push(comment.{{ safeJS (printf .Section)}}[i]);												
+						}; 			
+					});
+					var countArrs=[];
+					let numArr=tags.reduce(function (prev, next) {
+					prev[next] = prev[next] + 1 || 1;
+					countArrs.push({ prev });
+					return prev;
+					}, {});
+					<!-- console.log(numArr)  -->		
+					for (var key in numArr) {
+					　　var num = numArr[key];
+						if(document.getElementById(key)!=null){
+							document.getElementById(key).getElementsByTagName('sup')[0].innerText=Number(document.getElementById(key).getElementsByTagName('sup')[0].innerText) + Number(num);
+							}else{
+							testhtml = `<a id="${key}" href="/list/?{{ safeJS (printf .Section)}}='${key}'">${key}<sup>${num}</sup></a>`+ testhtml;
+						}	
+					}
+					commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+				}
+				
+				
+				getUpdatedTags()		
+				
+			</script>			

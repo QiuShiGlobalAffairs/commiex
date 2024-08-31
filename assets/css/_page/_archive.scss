@@ -1,0 +1,14 @@
+.archive {
+  .sing {
+    text-align: right;
+  }
+
+  .group-title {
+	width:100%;
+	padding: .1rem;
+	margin:0;
+  }
+
+  @import "../_partial/_archive/terms";
+  @import "../_partial/_archive/tags";
+}

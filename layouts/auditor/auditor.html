@@ -1,0 +1,131 @@
+
+
+{{- define "content" -}}
+
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; width: 0; height: 0" aria-hidden="true" id="__SVG_SPRITE_NODE__"><symbol xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" id="icon-planProject"><path d="M192 480a4.5 4.5 0 1 0 576 0 4.5 4.5 0 1 0-576 0z"></path></symbol></svg>
+	<script>		
+	url = ''
+	progress='';
+	progresss=[4,
+  {'title': '专题策划', 'url': '/url/?/authors/Bachelor/公益黄页——帮助群众找到合适的法律援助和媒体支持'},
+  {'title': '调查记者', 'url': '/url/?/authors/Bachelor/调查记者'},
+  {'title': '公益律师', 'url': '/url/?/authors/Bachelor/公益律师'},
+  {'title': '打假博主', 'url': '/url/?/authors/Bachelor/维权博主'},
+  {'title': '投诉教程', 'url': ''},
+  {'title': '按地域展示', 'url': ''},
+  {'title': '维权ai大模型', 'url': ''}	
+	];
+	if (progresss) {
+	　　　　for (let i = 1; i < (progresss.length-1); i++) {
+		progress += `<div class="el-step is-horizontal"><div class="el-step__head ${ i <= progresss[0] ? "is-process" : "is-wait"} "><div class="el-step__line"><i class="el-step__line-inner"></i></div><div class="el-step__icon is-text"><svg d="" aria-hidden="true" class="planSvg svg-icon"><use d="" xlink:href="#icon-planProject"></use></svg></div></div><div class="el-step__main"><div class="el-step__title is-process"></div><div class="el-step__description is-process" ><a href="${ progresss[i]['url'] ? progresss[i]['url'] : ""}" title=${ progresss[i]['title'] ? progresss[i]['title'] : ""} target="_blank" rel="noopener noreferrer me" class=${ i <= progresss[0] ? "red" : ""}>${ progresss[i]['title'] ? progresss[i]['title'] : ""}</a></div></div></div>`;
+		}; 
+	
+		progress += `<div class="el-step is-horizontal"><div class="el-step__head ${ progresss[0] < progresss.length ? "is-wait" : "is-process"}"><div class="el-step__icon is-text"><svg d="" aria-hidden="true" class="planSvg svg-icon"><use d="" xlink:href="#icon-planProject"></use></svg></div></div><div class="el-step__main"><div class="el-step__title is-process"></div><div class="el-step__description is-process" ><a href="${ progresss[progresss.length-1]['url'] ? progresss[progresss.length-1]['url'] : ""}" title=${ progresss[progresss.length-1]['title'] ? progresss[progresss.length-1]['title'] : ""} target="_blank" rel="noopener noreferrer me" >${ progresss[progresss.length-1]['title'] ? progresss[progresss.length-1]['title'] : ""}</a></div></div></div>`;
+	};
+	async function getprofile() {
+		querystring=window.location.search
+		const params = new URLSearchParams(querystring);
+		const parameterValue = params.get('tags');
+		
+		const data = await fetch( {{ $.Site.Params.dataURL }} + 'profile?project=[%22lemmaTitle%22]&string=auditor' )
+		const profile = await data.json();
+		document.getElementById("lemmaTitle").innerHTML=profile[0].desc;
+		document.getElementById("summary").innerHTML=profile[0].summary;
+		document.getElementById("position").innerHTML =profile[0].lemmaDesc + `<a href="https://t.me/+vPLshmMs1gYzZjQ1" title="Telegram" target="_blank" rel="noopener noreferrer me" class="red"><i class="fab fa-telegram-plane fa-fw "></i>加入我们</a><a href="https://twitter.com/Qiushi_Office" title="Twitter" target="_blank" rel="noopener noreferrer me"><i class="fab fa-twitter fa-fw"></i></a>` ;
+		document.getElementById("lemmaTitle").href =profile[0].url;
+		if (coverPic !== "") {document.getElementById("coverPic").src=profile[0].coverPic;;}
+	};		
+	getprofile();	
+	</script>	
+
+<div class="page home" data-home="posts">
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup >{{ len $pages }}</sup></a>				
+			</h2>
+			{{- /* partial "home/newslist.html" . */ -}}
+			<div class="home-profile">
+					<div class="projectMain" style="color: rgb(0, 0, 0); background-color: #fff;font-size: 16px;box-shadow: 0px 4px 8px rgba(5, 10, 15, 5%), 0px 7px 13px -3px rgba(5, 10, 15, 30%); line-height: 18.4px; margin: 0; padding: 0; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><div class="content-img" style="color: rgb(0, 0, 0); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 388px; height: 222px; font-size: 16px; line-height: 18.4px; margin: 0px; padding: 5px; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: hidden; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><img id="coverPic" src="https://bkssl.bdimg.com/resource/pages/images/58204d9b3638fd76dd07.png" style="color: rgb(0, 0, 0); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 420px; height: 234.828px; font-size: 16px; line-height: 18.4px; margin: 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: clip; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"></div> <div class="content-right" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 851.891px; *//* height: 251.992px; */font-size: 16px;line-height: 18.4px;margin: 0px;padding: 15px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div class="content-text-title" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 805.062px; */height: 146.797px;font-size: 16px;line-height: 18.4px;margin: 0px 0px 20px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div class="content-plan" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 136.797px;font-size: 16px;line-height: 18.4px;margin: 10px 0px 0px;padding: 0px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;"><div class="content-plan-top" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 60px;font-size: 16px;line-height: 18.4px;margin: 0px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;">
+					<h1 id='position' >职务信息
+                                     <a href="https://t.me/+vPLshmMs1gYzZjQ1" title="Telegram" target="_blank" rel="noopener noreferrer me" class="red"><i class="fab fa-telegram-plane fa-fw "></i>加入我们</a>
+
+
+									 </h1>
+									 
+									
+									 
+									 </div> 
+					<span>项目进度：</span><div class="el-steps el-steps--horizontal" id='progress'>									 </div>
+									 
+									 </div></div> 
+					<div class="content-text-descript"><p id='summary'>
+                                项目描述：本项目由共产主义者推动建立，我们希望建立一些属于无产阶级的信息基础设施！
+                            </p></div></div><h2 class="animate__animated animate__pulse animate__faster" style="flex: 1;font-size: 1.25rem;font-weight: bold;text-align: center;"><a href="/tags" id="lemmaTitle" style="line-height: normal;">中国的审计哥</a><sup id="sup" >0</sup>				
+			</h2></div>
+		</div>
+</div>
+
+<script> document.getElementById("progress").innerHTML=progress </script>
+
+<div class="page home archive" data-home="posts">
+
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+		
+				<a href="/tags" >&nbsp;调查记者<sup id="sup" >0</sup></a>				
+			</h2>
+
+
+
+	<div class="home  tag-cloud-tags" id="test0" data-home="posts"></div>
+	
+		<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+
+		<a href="/tags" >&nbsp;维权律师<sup id="sup" >0</sup></a>				
+		</h2>
+			
+    <div class="home  tag-cloud-tags" id="test" data-home="posts"></div>
+		<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+
+		<a href="/tags" >&nbsp;职业打假<sup id="sup" >0</sup></a>				
+		</h2>
+	<div class="home  tag-cloud-tags" id="test2" data-home="posts"></div>
+</div>
+
+	<script>		
+		url=''
+		var dataURL={{ $.Site.Params.dataURL }};
+		async function getUpdatedTags(db,count,html) {
+			const data = await fetch( {{ $.Site.Params.dataURL }} + 'show?'+ db +'='+count)
+			const comments = await data.json();
+			const commentsDiv=document.getElementById(html)
+			var testhtml='';
+			
+			<!-- console.log(numArr)  -->		
+			for (var key in comments) {
+			　　var num = comments[key];
+					testhtml = `<a id="${key}" href="${dataURL}redirect?db=${db}&${count}=${key}"  target="_blank">${key}<sup>${num}</sup></a>`+ testhtml;
+			}
+			var sup = document.getElementById("sup");
+			sup.innerText = parseInt(sup.innerText)+Object.keys(comments).length;
+			commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+		};
+
+		function getquery(name) {
+			let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			let r = window.location.search.substr(1).match(reg);
+			if (r != null) {
+				return decodeURIComponent(r[2]);
+			};
+			return null;
+		};		
+		
+		if (window.location.search=='') { getUpdatedTags("backup","name","test0");
+		getUpdatedTags("lawyer","name","test");
+		getUpdatedTags("auditor","name","test2") } else {
+		getUpdatedTags( window.location.search.substr(1),"test0")	}	
+		
+	</script>		
+{{- end -}}
+
+

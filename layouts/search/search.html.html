@@ -1,0 +1,83 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	
+	<script>		
+
+	</script>			
+	
+	
+<div class="page home" {{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+
+        {{- if ne $profile.enable false -}}
+            {{- partial "home/profile.html" . -}}
+        {{- end -}}
+
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+            {{- /* $pages := where .Site.RegularPages "Type" "posts" */ -}}
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "posts") -}}			
+				<a href="/posts" >{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup id="sup" >{{ len $pages }}</sup></a>				
+			</h2>
+</div>
+
+<article class="page " style="" data-single="single">
+
+<div id="searchbox" style="color: rgb(30, 30, 30); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 719.993px; height: 40.4332px; font-size: 18px; line-height: 28.8px; margin: 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(30, 30, 30); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(30, 30, 30); list-style: outside none disc; text-align: start;">
+    <input id="searchInput" autofocus="" placeholder="检索司法案例" aria-label="search" type="search" autocomplete="off" maxlength="64" style="color: rgb(30, 30, 30); background: none 0px 0px / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); ; height: 40px; font-size: 18px; line-height: 28.8px; margin: 0px; padding: 4px 10px; position: static; float: none; inset: auto; display: inline-block; border: 1.36364px solid rgb(214, 214, 214); cursor: text; overflow: visible; box-sizing: border-box; border-radius: 8px; text-decoration: none solid rgb(30, 30, 30); list-style: outside none disc; text-align: start;">
+    <ul id="searchResults" aria-label="search results" style="color: rgb(30, 30, 30); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 719.993px; height: 0px; font-size: 18px; line-height: 28.8px; margin: 10px 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(30, 30, 30); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(30, 30, 30); list-style: outside none disc; text-align: start;"></ul>
+</div>
+
+
+</article>
+
+<script>
+  // 模拟一些搜索结果数据
+  
+  
+  const mockData = [
+    "搜索结果 1清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果",
+    "搜索结果 2清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果",
+    "搜索结果 3清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果",
+    "搜索结果 4清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果",
+    "搜索结果 清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果清空之前的搜索结果5"
+  ];
+
+async function getcases() {
+	const data = await fetch(uri);
+	console.log("delete"+uri)
+	const t = await data.json();
+	console.log(t)
+	var commentsDiv=document.getElementById("searchResults");
+	let e = "";
+	for (let n in t)
+		e += `<li class="post-entry"><div class="entry-header">${t[n].title}&nbsp;\xBB</div><a href="${t[n].url}" aria-label="${t[n].title}"></a></li>`;
+	commentsDiv.innerHTML = e,
+	console.log(e)
+}
+
+  // 获取DOM元素
+  const searchBox = document.getElementById("searchInput");
+  const searchResults = document.getElementById("searchResults");
+
+  // 添加事件监听器，监听输入框的变化
+  searchBox.addEventListener("input", function() {
+    // 获取输入框的值
+    const searchTerm = searchBox.value.toLowerCase();
+	console.log(searchTerm)
+    // 清空之前的搜索结果
+    searchResults.innerHTML = "";
+
+    // 过滤匹配的搜索结果
+    const filteredResults = mockData.filter(result => result.toLowerCase().includes(searchTerm));
+	uri = "http://127.0.0.1:4433/case?s=" +searchTerm;
+	getcases()
+
+
+    // 显示搜索结果
+
+  });
+</script>	
+	
+{{- end -}}
+

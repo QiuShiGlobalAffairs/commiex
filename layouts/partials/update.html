@@ -1,0 +1,155 @@
+<!-- CDNJS :: Vue -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+
+<script>
+	function gettoedit(name) {
+	item = localStorage['WALINE_USER'] || sessionStorage['WALINE_USER'];
+	
+	try {
+		admin= JSON.parse(item).type==="administrator";
+		owner= JSON.parse(item).display_name;
+	} catch (e) {
+		admin = Boolean(9 > 10); owner= Boolean(9 > 10)}
+
+		viewedit  = new Vue({
+            el: name,
+            data: {
+				isAdmin:admin,
+				Owner:owner,                
+            },});	
+	document.getElementById("header-desktop").classList.remove("animate__fadeOutUp");
+	document.getElementById("header-mobile").classList.remove("animate__fadeOutUp");
+	}
+async function getUpdatedComments() {
+		
+		<!-- try { -->
+		<!-- url -->
+		<!-- } catch(e) { -->
+		<!-- const url = {{ $.Site.Params.dataURL }}+'?multitype='+{{.Section}}; -->
+		<!-- }; -->
+		<!-- const update = url ?? {{ $.Site.Params.dataURL }}+'?multitype='+{{.Section}}; -->
+	
+	try{
+		var commentsDiv=document.getElementById("test");
+		var testhtml=commentsDiv.innerHTML
+	if (!!url) {
+		document.querySelector("#header-mobile").classList.remove('animate__fadeOutUp');
+		document.querySelector("#header-desktop").classList.remove('animate__fadeOutUp');
+		const data = await fetch(url);
+		console.log("delete"+url)
+		const comments = await data.json();
+		<!-- console.log(comments) -->
+
+		var sup = document.getElementById("sup");
+		comments.forEach( comment => {
+			<!--console.log(comment.avatar)-->
+			if (!comment.avatar) {comment.avatar="https://q1.qlogo.cn/g?b=qq&nk=1318011774&s=100"}
+			if (!comment.summary) {comment.summary=(comment.markdown ? comment.markdown : ( comment.desc ? comment.desc.toString() : comment.title ))}
+			if (comment.date) {comment.date=(Array.isArray(comment.date) ? comment.date[0] : comment.date)} else {comment.date=''}
+		    var loveStr = "";	
+			var liststr = "";	
+			if (comment.countries) {
+	　　　　for (let i = 0; i < comment.countries.length; i++) {
+					var country = comment.countries[i].toLowerCase().replace(/\s+/g,"-");
+					loveStr += `<a href="/countries/${country}">${comment.countries[i]}&nbsp;</a>`}; 
+				};
+			var img = "";	
+			if (comment.image) {
+			img = `<div class="featured-image-preview2"><img class="lazyautosizes ls-is-cached lazyloaded" src=${comment.image} ></div>`
+			}; 
+			if (comment.tags) {
+	　　　　for (let i = 0; i < comment.tags.length; i++) {
+					var tag = comment.tags[i];
+					loveStr += `<a href=${comment.desc ? "/news/?tags=" +tag : "/tags/"+tag}>${comment.tags[i]}&nbsp;</a>`;
+					}; 
+			};
+			var sum= `
+							{{- /* Title */ -}}
+					<h1 class="single-title" itemprop="name headline">
+						<a href=${comment.desc ? comment.url + ' target="_blank"' : "/url/?"+comment.url}>${comment.title}</a>
+						<a  v-if="isAdmin || (Owner==='${comment.author}')" href=${comment.desc ? comment.url : "/edit?url="+comment.url} style="float:right" view=${comment.author} ><i class="far fa-edit fa-fw" style="font-size:18px" aria-hidden="true"></i></a>
+					</h1>	
+					<div onclick="window.open('/url/?${comment.url}','_self')" class="post-entry">				
+						<div class="post-info2">
+							<div class="post-meta">
+								<span class="post-author"><a href="${comment.authorLink}" title="Author" target="_blank" rel="noopener noreffer author" class="author" style="display:block; text-align: center;"><img src=${comment.avatar} alt="avatar" class="avatar"><span style="display:inline-block;">${comment.author}</span></a>
+								</span>
+								<span class="post-publish"><time>${comment.date.substring(0, 10)}</time></span>
+							</div>
+							<div  class="content">
+								${comment.summary}
+							</div>
+						</div>
+						${img}
+					</div>
+							<div class="post-footer"><div class="post-tags post-category"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;${loveStr}		
+							</div></div>				
+					`;
+			
+				
+			if (comment.titles) {
+	　　　　for (let i = 0; i < comment.titles.length; i++) {
+					liststr = `<div style="display: inline-block;width: 100%;"> <span class="grey" >${comment.titles.length-i}&nbsp</span> <a href=${comment.links[i]} target="_blank" >${comment.titles[i]}</a>${comment.tags ? '<a href=/news/?tags=' + comment.tags[i] +'><span style="float:right;">' +comment.tags[i]+'</span></a>' : ''}  </div>` + liststr
+					}; 
+					comment.liststr=liststr;
+				};				
+
+
+			
+
+			{{- /* console.log(sum) */ -}}
+			if(document.getElementById(comment.url)!=null){
+				document.getElementById(comment.url).innerHTML= sum
+				}else{sup.innerText++;
+				<!-- console.log(comment.title) -->
+				if (window.location.pathname=='/newslist/') {					
+				testhtml =  `<article class="single summary2" ripple="rgba(0,0,0,0.1)" id=${comment.url} ><h1 class="single-title" itemprop="name headline"> <a href="${comment.url}" target="_blank"><img src=${comment.avatar} alt="avatar" class="avatar">&nbsp<span >${comment.author}</span></a><a href="${comment.url}" target="_blank"> <span style="float:right;">${comment.columns ? comment.columns : ''}<i style="float:right,font-size: 1rem;" class="far fa-donate fa-fw" style="font-size:18px" aria-hidden="true"></i></span></a> </h1><div class="nano" style="display:inline-block;height: 240px;overflow: hidden;overflow: scroll;"> <div class="nano-content post-tags post-category"> ${comment.liststr} </div> </div> <div class="" > <div class="post-tags post-category grey"> ${comment.updatehistory?timestampFormat(comment.updatehistory):""} <span style="float:right;"></span> </div> </div> </article>` + testhtml;
+				} else {
+								testhtml =  `<article class="single summary2" ripple="rgba(0,0,0,0.1)" id=${comment.url}> ${sum} </article>` + testhtml;
+				};
+				
+
+			}				
+				
+		});
+		commentsDiv.innerHTML=testhtml;
+		gettoedit('#test');console.log("pjax end")	
+		$header.classList.remove('animate__fadeOutUp')
+        animateCSS($header, ['animate__fadeInDown', 'animate__faster'], true)
+		$(".nano").nanoScroller();		
+		}}catch(e){gettoedit('#test');		
+		try {
+		  commentsDiv.innerHTML = testhtml;
+		} catch (error) {
+		}
+		}	
+		
+		
+}
+	
+	<!-- document.addEventListener('DOMContentLoaded', (event) => { -->
+		<!-- getUpdatedComments() -->
+
+		
+	<!-- }); -->
+	function deleteurl() {
+        let url = `{{ $.Site.Params.dataURL }}`+``;
+        let data = {
+            "url":url
+        };
+		console.log(this);
+        this.$post(url,data).then(retData => {
+         
+        })
+	}
+
+	function whenDOMReady() {
+		getUpdatedComments()
+		
+
+	}
+
+	document.addEventListener('DOMContentLoaded', getUpdatedComments);
+	document.addEventListener('pjax:success', getUpdatedComments);
+	
+</script>

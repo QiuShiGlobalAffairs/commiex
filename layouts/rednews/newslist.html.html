@@ -1,0 +1,147 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; width: 0; height: 0" aria-hidden="true" id="__SVG_SPRITE_NODE__"><symbol xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" id="icon-planProject"><path d="M192 480a4.5 4.5 0 1 0 576 0 4.5 4.5 0 1 0-576 0z"></path></symbol></svg>
+
+	<script>		
+	url = {{ $.Site.Params.dataURL }}  + 'newslist'+ window.location.search;
+	types = 'news';
+	progress='';
+	progresss=[2,{'title':'Initiative','url':'/authors/bachelor/hugo-output/'},{'title':'Collect data(parties)','url':'/authors/bachelor/agencylist/'},{'title':'Regex to use','url':'/authors/bachelor/hugo-output/'},{'title':'debug','url':''},{'title':'machine learning','url':'/authors/bachelor/hugo-output/'},{'title':'Decentralized deployment','url':'/authors/bachelor/hugo-output/'},{'title':'visualization','url':''}];
+	if (progresss) {
+	　　　　for (let i = 1; i < (progresss.length-1); i++) {
+		progress += `<div class="el-step is-horizontal"><div class="el-step__head ${ i <= progresss[0] ? "is-process" : "is-wait"} "><div class="el-step__line"><i class="el-step__line-inner"></i></div><div class="el-step__icon is-text"><svg d="" aria-hidden="true" class="planSvg svg-icon"><use d="" xlink:href="#icon-planProject"></use></svg></div></div><div class="el-step__main"><div class="el-step__title is-process"></div><div class="el-step__description is-process" ><a href="${ progresss[i]['url'] ? progresss[i]['url'] : ""}" title=${ progresss[i]['title'] ? progresss[i]['title'] : ""} target="_blank" rel="noopener noreferrer me" class=${ i <= progresss[0] ? "red" : ""}>${ progresss[i]['title'] ? progresss[i]['title'] : ""}</a></div></div></div>`;
+		}; 
+		console.log(progress)
+		progress += `<div class="el-step is-horizontal"><div class="el-step__head ${ progresss[0] < progresss.length ? "is-wait" : "is-process"}"><div class="el-step__icon is-text"><svg d="" aria-hidden="true" class="planSvg svg-icon"><use d="" xlink:href="#icon-planProject"></use></svg></div></div><div class="el-step__main"><div class="el-step__title is-process"></div><div class="el-step__description is-process" ><a href="${ progresss[progresss.length-1]['url'] ? progresss[progresss.length-1]['url'] : ""}" title=${ progresss[progresss.length-1]['title'] ? progresss[progresss.length-1]['title'] : ""} target="_blank" rel="noopener noreferrer me" >${ progresss[progresss.length-1]['title'] ? progresss[progresss.length-1]['title'] : ""}</a></div></div></div>`;
+	};
+	</script>			
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/nanoscroller.js"></script>
+
+<div class="page home" data-home="news">		
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup >{{ len $pages }}</sup></a>				
+			</h2>
+			{{- /* partial "home/newslist.html" . */ -}}
+			<div class="home-profile">
+					<div class="projectMain" style="color: rgb(0, 0, 0); background-color: #fff;font-size: 16px;box-shadow: 0px 4px 8px rgba(5, 10, 15, 5%), 0px 7px 13px -3px rgba(5, 10, 15, 30%); line-height: 18.4px; margin: 0; padding: 0; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><div class="content-img" style="color: rgb(0, 0, 0); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 388px; height: 222px; font-size: 16px; line-height: 18.4px; margin: 0px; padding: 5px; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: hidden; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><img src="/commumap.jpg" style="color: rgb(0, 0, 0); background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); width: 420px; height: 234.828px; font-size: 16px; line-height: 18.4px; margin: 0px; padding: 0px; position: static; float: none; inset: auto; display: block; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: clip; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"></div> <div class="content-right" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 851.891px; *//* height: 251.992px; */font-size: 16px;line-height: 18.4px;margin: 0px;padding: 15px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div class="content-text-title" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 805.062px; */height: 146.797px;font-size: 16px;line-height: 18.4px;margin: 0px 0px 20px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div class="content-plan" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 136.797px;font-size: 16px;line-height: 18.4px;margin: 10px 0px 0px;padding: 0px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;"><div class="content-plan-top" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 60px;font-size: 16px;line-height: 18.4px;margin: 0px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;"><h1>
+                                        Rednews: it is a proposal to compile communist news around the world
+                                     <a href="https://t.me/+vPLshmMs1gYzZjQ1" title="Telegram" target="_blank" rel="noopener noreferrer me" class="red"><i class="fab fa-telegram-plane fa-fw "></i>join this proposal</a></h1></div> <span>progress：</span><div class="el-steps el-steps--horizontal" id='progress'>									 </div>				 
+									 </div></div> <div class="content-text-descript"><p>
+                                项目描述：本项目由国际共运爱好者推动建立，我们希望建立一些属于左翼的信息基础设施！
+                            </p></div></div><h2 class="animate__animated animate__pulse animate__faster" style="flex: 1;font-size: 1.25rem;font-weight: bold;text-align: center;">updated<a href="/tags" style="line-height: normal;">&nbsp;newslists<sup id="sup">0</sup></a>				
+			</h2></div>
+</div>
+<script> document.getElementById("progress").innerHTML=progress </script>
+    <div class="page home" id="test"{{ if ne $posts.enable false }} data-home="news"{{ end }}>
+        {{- /* Profile */ -}}
+
+
+
+
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- /* $pages := where .Site.RegularPages "Type" "posts" */ -}}
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- with $posts.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+				
+            {{- range $pages.Pages -}}
+                
+				{{- .Render "summary" -}}	
+								
+            {{- end -}}
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+	<script>
+
+
+	  function refresh(a,b) {
+		var query=a+'='+b;
+		url = {{ $.Site.Params.dataURL }}+ 'refresh';
+		fetch(url, {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json'
+		  },
+		  body: query
+		})
+		.then(response => response.json())
+		.then(data => update(data))
+		.catch(error => console.error(error));
+	};
+	document.addEventListener('DOMContentLoaded', (event) => {
+    $(".nano").nanoScroller();
+  });
+  
+  </script>	
+<script>
+function timestampFormat(timestamp) {
+    function zeroize(num) {
+        return (String(num).length == 1 ? '0' : '') + num;
+    }
+    var curTimestamp = parseInt(new Date().getTime() / 1000); //当前时间戳
+    var timestampDiff = curTimestamp - timestamp; // 参数时间戳与当前时间戳相差秒数
+    var curDate = new Date(curTimestamp * 1000); // 当前时间日期对象
+    var tmDate = new Date(timestamp * 1000); // 参数时间戳转换成的日期对象
+    var Y = tmDate.getFullYear(),
+        m = tmDate.getMonth() + 1,
+        d = tmDate.getDate();
+    var H = tmDate.getHours(),
+        i = tmDate.getMinutes(),
+        s = tmDate.getSeconds();
+    if (timestampDiff < 120) { // 一分钟以内
+        return "few seconds ago";
+    } else if (timestampDiff < 3600) { // 一小时前之内
+        return Math.floor(timestampDiff / 60) + "mins ago";
+    } else if (curDate.getFullYear() == Y && curDate.getMonth() + 1 == m && curDate.getDate() == d) {
+        return 'updated today ' + zeroize(H) + ':' + zeroize(i);
+    } else {
+        var newDate = new Date((curTimestamp - 86400) * 1000); // 参数中的时间戳加一天转换成的日期对象
+        if (newDate.getFullYear() == Y && newDate.getMonth() + 1 == m && newDate.getDate() == d) {
+            return 'updated yesterday ' + zeroize(H) + ':' + zeroize(i);
+        } else if (curDate.getFullYear() == Y) {
+            return zeroize(m) + '-' + zeroize(d) + '- ' + zeroize(H) + ':' + zeroize(i);
+        } else {
+            return Y + '-' + zeroize(m) + '-' + zeroize(d) + ' ' + zeroize(H) + ':' + zeroize(i);
+        }
+    }
+}
+</script>	 
+<script>
+  function update(comments) {
+	var commentsDiv=document.getElementById("test");
+	var testhtml=commentsDiv.innerHTML
+	comment=comments[0];
+	var liststr = "";	
+	if (comment.titles) {
+　　　　for (let i = 0; i < comment.titles.length; i++) {
+			liststr = `<div style="display: inline-block;width: 100%;"> <span class="grey" >${comment.titles.length-i}&nbsp</span> <a href=${comment.links[i]} target="_blank" >${comment.titles[i]}</a>${comment.tags ? '<a href=/news/?tags=' + comment.tags[i] +'><span style="float:right;">' +comment.tags[i]+'</span></a>' : ''}  </div>` + liststr
+			}; 
+			comment.liststr=liststr;
+		};	
+	var sum= `<h1 class="single-title" itemprop="name headline"> <a href="${comment.url}" target="_blank"><img src=${comment.avatar} alt="avatar" class="avatar">&nbsp<span >${comment.author}</span></a> <span style="float:right;">${comment.columns ? comment.columns : ''}<i style="float:right,font-size: 1rem;" onclick="refresh('url','${comment.url}')" class="<i class="fa-solid fa-circle-dollar-to-slot"></i>" style="font-size:18px" aria-hidden="true"></i></span> </h1><div class="nano" style="display:inline-block;height: 240px;overflow: hidden;overflow: scroll;"> <div class="nano-content post-tags post-category"> ${comment.liststr} </div> </div> <div class="" > <div class="post-tags post-category grey"> ${timestampFormat(comment.updatehistory)} <span style="float:right;"></span> </div> </div> `;
+	if (document.getElementById(comment.url)!=null){
+		document.getElementById(comment.url).innerHTML= sum
+		} else {sup.innerText++;
+		testhtml =  `<article class="single summary2" ripple="rgba(0,0,0,0.1)" id=${comment.url}> ${sum} </article>` + testhtml;
+	}						
+}; 
+</script>	
+{{- end -}}
+
+

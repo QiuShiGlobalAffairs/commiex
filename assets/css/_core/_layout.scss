@@ -1,0 +1,33 @@
+/** Layout **/
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+
+  main {
+
+    flex: 1 0 auto;
+
+    .container {
+	width: 100%;
+	box-sizing:border-box;
+    }
+
+    .contain {
+	width: 100%;
+	box-sizing:border-box;
+    }
+
+	
+  }
+}
+
+#rel {
+    display: block;
+    position: absolute; 
+	box-sizing: border-box;
+    border-left: 4px solid rgb(240, 240, 240);
+	left: calc(806px + (100% - 806px) / 2);
+	padding: 0 .8rem;
+}

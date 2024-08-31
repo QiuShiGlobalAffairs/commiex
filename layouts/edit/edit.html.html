@@ -1,0 +1,528 @@
+{{- define "title" }}
+    {{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" }} - {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+
+<link rel="stylesheet" href="/editor/css/editormd.css" />
+
+
+<!-- Require js -->
+<script src="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.2.0/dist/voerro-vue-tagsinput.js"></script>
+
+	<form action="{{ $.Site.Params.dataURL }}edit" method="post" id="mdform"  enctype="multipart/form-data" accept-charset="UTF-8" >
+		<div class="work" id="work">
+			
+			<input type="search" v-model="title" name="title" placeholder="your title..."
+	class="title">
+	
+			<input type="submit" value="发布文章" class="bn">
+		</div>	
+	<div id="tagsapp" class="app">
+		
+		<tags-input element-id="tags" v-model="tags" 
+			:existing-tags="[]"
+			:typeahead="true"
+			:add-tags-on-space="true"
+			:add-tags-on-blur="true"
+			>
+			
+		
+		</tags-input>
+
+	</div>	
+
+	</form>	
+	
+
+<script>
+
+	
+	title = new Vue({ 
+	  el: '#work',
+	  data: {
+		title: ''
+	  },
+	  mounted() {
+		if (localStorage.title) {
+		  this.title = localStorage.title;
+		};
+		console.log(this)
+		
+	  },
+	  watch: {
+		title(newtitle) {
+		  localStorage.title = newtitle;
+		}
+	  }
+	});	
+	
+</script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
+<script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
+
+
+<link href="https://unpkg.com/@waline/client@v2/dist/waline.css" rel="stylesheet">
+<script src="https://unpkg.com/@waline/client@2.13.0/dist/waline.js"></script>
+
+<div id="waline" class="edwl"></div>
+
+<div id="vdapp" class="app">
+<textarea style="display: none" id="htmltext" form="mdform" name="content"></textarea>
+<textarea style="display: none" id="md" ></textarea>
+<div id="vditor" class="" style="width:80%;height:calc(100%- var(--header-height))" data-home="posts">
+	
+</div>
+</div>
+
+
+<script>	
+
+	function getquery(name) {
+		let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		let r = window.location.search.substr(1).match(reg);
+		if (r != null) {
+			return decodeURIComponent(r[2]);
+		};
+		return null;
+	}
+
+	var isMobile = window.matchMedia && window.matchMedia('only screen and (max-width: 450px)').matches;
+
+
+		var queryString = window.location.search;
+		console.log(queryString);
+		
+		var work = document.querySelector(".work");
+		var urlput = document.createElement("div");
+		work.appendChild(urlput);
+
+async function getonlinearticle() {
+
+		articleurl=getquery("url");
+		
+		if(getquery("online")) {
+		var onlyonline = document.createElement("div");
+		onlyonline.innerHTML = `<input type="hidden" name="online" value="true">`; work.appendChild(onlyonline);}
+		
+		
+		try{
+		const data = await fetch({{ $.Site.Params.dataURL }}+"?url="+getquery("url"));
+		article = await data.json();
+		} catch(e){ article = new Object() };
+		
+		<!-- 在线更新数据库中没有的本地文章 -->
+		if(Object.keys(article).length === 0) {
+		title.title = getquery("title");
+		author=getquery("author");
+		authorLink=getquery("authorLink");
+		<!-- multitype=getquery("url").match(/\/([0-9a-zA-Z\_]*)\//)[1]; -->
+		try{
+		if (getquery("tags")!="") {  
+		oldtags=getquery("tags").replace(/\[|]/g,'').trim().split(/\s+/);
+		for (var i=0,len=oldtags.length; i<len; i++) { 
+		oldtags[i] =`{"key":"","value":"${oldtags[i]}"}`; 
+		oldtags[i]=JSON.parse(oldtags[i])
+		};
+		console.log(oldtags)
+		localStorage.tags = JSON.stringify(oldtags);     };	
+		}catch(e){};
+		multitype=getquery("multitype").replace(/\[|]/g,'').trim().split(/\s+/);
+		avatar = getquery("avatar");
+		getoldarticle(); console.log("转offline")
+		} else {
+		
+		
+		try{
+		if (!!article[0].title) {multitype=article[0].multitype};
+		title.title =article[0].title;}catch(e){
+		multitype="";title.title =article[0].title;
+		};
+		try{
+		author=article[0]['author']} catch(e){  };
+		try{ avatar= article[0]['avatar']} catch(e){  };
+		try{
+		authorLink=article[0]['authorLink']} catch(e){  };
+		try{
+		oldtags=article[0]['tags']
+
+		for (var i=0,len=oldtags.length; i<len; i++) { 
+		oldtags[i] =`{"key":"","value":"${oldtags[i]}"}`; 
+		oldtags[i]=JSON.parse(oldtags[i])
+		};
+		console.log(oldtags)
+		localStorage.tags = JSON.stringify(oldtags);		
+		}catch(e){};
+		
+		taglist = new Vue({
+			el: '#tagsapp',
+			components: { "tags-input": VoerroTagsInput },	
+			data:{
+				tags:[]
+			},
+		
+		mounted() {
+		if(localStorage.tags) this.tags = JSON.parse(localStorage.tags);
+		},	
+		
+		watch:{
+		tags(newtags) {
+		  localStorage.tags = JSON.stringify(newtags);
+		}}
+		
+		});		
+		
+		
+		if (isMobile) {					
+			
+			try{localStorage.WALINE_COMMENT_BOX_EDITOR=article[0].markdown;}catch(e){};
+			var waline = Waline.init({
+			  el: '#waline',
+			  serverURL: {{.Site.Params.page.comment.waline.serverURL }},
+			  login: 'force',
+			  locale: {placeholder:'Hello, welcome to write here!'}
+			
+			});
+			
+			mdtext = document.querySelector("#wl-edit");
+			mdtext.setAttribute('form','mdform');
+			mdtext.setAttribute('name','markdown');
+			
+			hltext = document.getElementById("htmltext");
+			
+		}
+	  
+		else {
+
+			try{holder=article[0].markdown;
+			
+			}catch(e){};
+					
+				eh = document.body.offsetHeight - 162;
+				console.log(eh)
+            var toolbar;
+            toolbar = [
+                "emoji",
+                "headings",
+                "bold",
+                "italic",
+                "strike",
+                "link",
+                "|",
+                "list",
+                "ordered-list",
+                "check",
+                "|",
+                "quote",
+                "line",
+                "code",
+                "inline-code",
+                "|",
+                "upload",
+                "record",
+                "table",
+                "|",
+                "export",
+                "fullscreen",
+                "preview",
+				"edit-mode"
+            ];
+            //挂载到全局
+            window.vditor = new Vditor("vditor", {
+
+                // 获取焦点方法
+                focus(md) {
+                    document.onkeydown = function () {
+                        // 判断 Ctrl+S
+                        if (event.ctrlKey == true && event.keyCode == 83) {
+                            alert('触发ctrl+s');
+                            // 或者 return false;
+                            event.preventDefault();
+                        }
+                    }
+                },
+                // _lutePath: "lib/vditor-3.7.3/src/js/lute/lute.min.js",
+                // 这个是自定义导航栏
+                toolbar,
+                // 全屏选项
+                fullscreen: {
+                    index: 9999,
+                },
+                // 展示模式
+                mode: "ir",
+                //编辑器高度
+                // height: window.innerHeight,
+                // height: screen.height,
+                height: eh,
+                //是否展示大纲,手机端自动隐藏就行了
+                outline: true,
+                //打印调试信息
+                debugger: false,
+                //是否启动打字机模式(没弄明白这个意思)
+                typewriterMode: false,
+                //默认提示文本
+                placeholder: "welcome to write here!",
+
+                // 工具栏配置是否隐藏和固定
+                toolbarConfig: {
+                    // 是否固定工具栏
+                    pin: false,
+                },
+
+                // 是否启用字数统计
+                counter: {
+                    enable: true,
+                    type: "text",
+                },
+
+                tab: "\t",
+                // 文件上传配置
+                upload: {
+                    accept: "image/*,.mp3, .wav, .rar, .pdf, .zip",
+                    token: "test",
+                    url: "http://127.0.0.1:4433/upload",
+                    linkToImgUrl: "/api/upload/fetch",
+                    filename(name) {
+                        return name
+                            .replace(/[^(a-zA-Z0-9\u4e00-\u9fa5\.)]/g, "")
+                            .replace(/[\?\\/:|<>\*\[\]\(\)\$%\{\}@~]/g, "")
+                            .replace("/\\s/g", "");
+                    },
+                },
+				
+				after: () => {
+						vditor.setValue(holder)
+					  },
+				
+            });
+				mdtext = document.getElementById("md");
+				mdtext.setAttribute('form','mdform');
+				mdtext.setAttribute('name','markdown');			
+				hltext = document.getElementById("htmltext");
+		}
+		
+
+		run();
+	}	
+}
+
+
+function getoldarticle() {
+
+    taglist = new Vue({
+        el: '#tagsapp',
+        components: { "tags-input": VoerroTagsInput },	
+		data:{
+			tags:[]
+		},
+    
+	mounted() {
+    if(localStorage.tags) this.tags = JSON.parse(localStorage.tags);
+	},	
+	
+	watch:{
+    tags(newtags) {
+      localStorage.tags = JSON.stringify(newtags);
+    }}
+	
+	});
+
+	if (isMobile) {					
+		
+		
+		if (getquery("markdown")) {
+		
+		localStorage.WALINE_COMMENT_BOX_EDITOR = getquery("markdown")
+		
+		} else {
+		
+		if (!localStorage.WALINE_COMMENT_BOX_EDITOR && !!localStorage.md && !getquery("url")) {localStorage.WALINE_COMMENT_BOX_EDITOR = localStorage.md;}
+		
+		}
+		
+		var waline = Waline.init({
+		  el: '#waline',
+		  serverURL: {{.Site.Params.page.comment.waline.serverURL }},
+		  login: 'force',
+		  locale: {placeholder:'Hello, welcome to write here!'}
+		
+		});
+		
+		mdtext = document.querySelector("#wl-edit");
+		mdtext.setAttribute('form','mdform');
+		mdtext.setAttribute('name','markdown');
+		hltext = document.getElementById("htmltext");
+	}
+	  
+	else {
+
+	if (getquery("markdown")) {
+	holder = getquery("markdown")
+	} else {
+	if (!!localStorage.md) {holder = localStorage.md;} else { holder='### Hello, welcome to write here!'};
+	
+	}
+	
+
+			
+		eh = document.body.offsetHeight - 162;
+		console.log(eh)
+
+				<!-- vd = new Vue({ -->
+				  <!-- el: '#vditor', -->
+				  <!-- data: { -->
+					<!-- contentEditor: '', -->
+				  <!-- }, -->
+				  
+				  <!-- mounted () { -->
+					<!-- this.contentEditor = new Vditor('vditor', { -->
+					  <!-- height: eh, -->
+					  <!-- width: 80, -->
+					  <!-- toolbarConfig: { -->
+						<!-- pin: true, -->
+					  <!-- }, -->
+					  <!-- cache: { -->
+						<!-- enable: false, -->
+					  <!-- }, -->
+					  <!-- after: () => { -->
+						<!-- this.contentEditor.setValue(holder) -->
+					  <!-- }, -->
+					<!-- }) -->
+				  <!-- }, -->
+				<!-- })	 -->
+            
+            //挂载到全局
+            window.vditor = new Vditor("vditor", {
+
+                // 获取焦点方法
+                focus(md) {
+                    document.onkeydown = function () {
+                        // 判断 Ctrl+S
+                        if (event.ctrlKey == true && event.keyCode == 83) {
+                            alert('触发ctrl+s');
+                            // 或者 return false;
+                            event.preventDefault();
+                        }
+                    }
+                },
+                // _lutePath: "lib/vditor-3.7.3/src/js/lute/lute.min.js",
+                // 这个是自定义导航栏
+                
+                // 全屏选项
+                fullscreen: {
+                    index: 9999,
+                },
+                // 展示模式
+                mode: "ir",
+                //编辑器高度
+                // height: window.innerHeight,
+                // height: screen.height,
+                height: eh,
+                //是否展示大纲,手机端自动隐藏就行了
+                outline: true,
+                //打印调试信息
+                debugger: false,
+                //是否启动打字机模式(没弄明白这个意思)
+                typewriterMode: false,
+                //默认提示文本
+                placeholder: "welcome to write here!",
+
+                // 工具栏配置是否隐藏和固定
+                toolbarConfig: {
+                    // 是否固定工具栏
+                    pin: false,
+                },
+
+                // 是否启用字数统计
+                counter: {
+                    enable: true,
+                    type: "text",
+                },
+
+                tab: "\t",
+                // 文件上传配置
+                upload: {
+                    accept: "image/*,.mp3, .wav, .rar, .pdf, .zip",
+                    token: "test",
+                    url: "http://127.0.0.1:4433/upload",
+                    linkToImgUrl: "http://127.0.0.1:4433/upload",
+                    filename(name) {
+                        return name
+                            .replace(/[^(a-zA-Z0-9\u4e00-\u9fa5\.)]/g, "")
+                            .replace(/[\?\\/:|<>\*\[\]\(\)\$%\{\}@~]/g, "")
+                            .replace("/\\s/g", "");
+                    },
+                },
+				
+				after: () => {
+						vditor.setValue(holder)
+					  },
+				
+            });
+				
+		mdtext = document.getElementById("md");
+		mdtext.setAttribute('form','mdform');
+		mdtext.setAttribute('name','markdown');		
+		hltext = document.getElementById("htmltext");		
+		
+	}	
+
+	run();
+
+}
+
+
+	function run() {	
+		try{		
+		if (isMobile) {hltext.value=document.querySelector("#waline > div > div.wl-comment > div.wl-panel > div.wl-preview > div").innerHTML} else {
+		mdtext.value = vditor.getValue();
+		hltext.value = vditor.getHTML();
+		
+		};
+		
+		if (!getquery("url")) { articleurl=`/authors/${userInfo.display_name}/${localStorage.title}`;
+		author=userInfo.display_name;
+		authorLink=userInfo.url;
+		avatar=userInfo.avatar;
+		}
+		if (!avatar) {avatar='https://bkssl.bdimg.com/resource/pages/images/58204d9b3638fd76dd07.png'};
+		urlput.innerHTML=`
+		<input type="hidden" name="url" id="url" value=${articleurl}>
+		<input type="hidden" name="author" id="" value="${author}">
+		<input type="hidden" name="authorLink" id="" value=${authorLink}>
+		<input type="hidden" name="avatar" id="" value=${avatar}>
+		<input type="hidden" name="multitype" id="" value=${multitype}>
+		<input type="hidden" name="wordCount" id="" v-model="length" value=${mdtext.value.length}>
+		<input type="hidden" name="summary" id="summary">
+		<input type="hidden" name="date" id="" value=${new Date().toISOString()}>
+		`;		
+		<!-- console.log(mdtext,mdtext.innerHTML) -->
+		document.getElementById("summary").value=mdtext.value.slice(0,200).replace(/<\/?.+?\/?>/g,
+    '').replace(/[`:_.~!@#$%^&*()\+=<>?"{}|\/\\[\]·~！\r\n]/g,
+    '').replace(/[#]/g, '');
+		localStorage.md = mdtext.value; 
+		
+		}catch(e){}					
+		setTimeout(run, 1000);		
+	}
+
+		if (getquery("url")) { getonlinearticle() } else {
+		url = queryString.substr(1);
+		multitype=url.substr(1);			articleurl=`/authors/${userInfo.display_name}/${localStorage.title}`
+		getoldarticle();
+		
+		};
+		
+
+		
+
+	
+	
+	
+</script>
+
+
+
+{{- end -}}

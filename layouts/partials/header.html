@@ -1,0 +1,404 @@
+{{- /* Desktop header */ -}}
+<header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+		
+		 {{- partial "update.html" . -}}	
+		 {{- partial "login.html" . -}}	
+		 
+        <div class="header-title">
+            <a href="{{ .Site.Home.RelPermalink }}" title="{{ .Site.Title }}">
+                {{- with .Site.Params.header.title -}}
+                    {{- with .logo -}}
+                        {{- dict "Src" . "Class" "logo" | partial "plugin/img.html" -}}
+                    {{- end -}}
+                    {{- with .pre -}}
+                        <span class="header-title-pre">{{ . | safeHTML }}</span>
+                    {{- end -}}
+                    {{- if .typeit -}}
+                        {{- $id := dict "Content" .name "Scratch" $.Scratch | partial "function/id.html" -}}
+                        <span id="{{ $id }}" class="typeit" style="color:#2d96bd"></span>
+                        {{- dict $id (slice $id) | dict "typeitMap" | merge ($.Scratch.Get "this") | $.Scratch.Set "this" -}}
+                    {{- else -}}
+                        {{- .name -}}
+                    {{- end -}}
+                    {{- with .post -}}
+                        <span class="header-title-post">{{ . | safeHTML }}</span>
+                    {{- end -}}
+                {{- else -}}
+                    {{- .Site.Title -}}
+                {{- end -}}
+            </a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner">
+				{{- range .Site.Menus.main -}}
+					{{ if .HasChildren }}
+						<div class="dropdown">
+							<a {{ if .URL }}href="{{ .URL }}"{{ else }}href="javascript:void(0);"{{ end }} class="menu-item menu-more dropbtn" title="{{ .Title }}" {{ if eq .Post "_blank" }}target="_blank" rel="noopener"{{ end }}>
+								{{- .Pre | safeHTML }} {{ .Name }} {{ if ne .Post "_blank" }}{{ .Post | safeHTML -}}{{ end }}
+							</a>
+							<div class="menu-more-content dropdown-content">
+								{{- range .Children -}}
+									{{- $url := .URL | relLangURL -}}
+									{{- with .Page -}}
+										{{- $url = .RelPermalink -}}
+									{{- end -}}
+										<a href="{{ $url }}" title="{{ .Title }}" {{ if eq .Post "_blank" }}target="_blank" rel="noopener"{{ end }}>{{- .Pre | safeHTML }} {{ .Name }} {{ if ne .Post "_blank" }}{{ .Post | safeHTML -}}{{ end }}</a>
+								{{- end -}}
+							</div>
+						</div>
+					{{ else }}
+						{{- $url := .URL | relLangURL -}}
+						{{- with .Page -}}
+							{{- $url = .RelPermalink -}}
+						{{- end -}}
+						<a class="menu-item{{ if $.IsMenuCurrent `main` . | or ($.HasMenuCurrent `main` .) | or (eq $.RelPermalink $url) }} active{{ end }}" href="{{ $url }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if (urls.Parse $url).Host }} rel="noopener noreffer" target="_blank"{{ end }}>
+							{{- .Pre | safeHTML }} {{ .Name }} {{ if ne .Post "_blank" }}{{ .Post | safeHTML -}}{{ end }}
+						</a>
+					{{- end -}}
+				{{- end -}}
+                {{- if .Site.Menus.main -}}
+                    <span class="menu-item delimiter"></span>
+                {{- end -}}
+
+                {{- if .Site.Params.search.enable -}}
+                    <span class="menu-item search" id="search-desktop">
+                        <input href="javascript:void(0);" type="text" placeholder="{{ .Site.Params.search.placeholder | default (T `searchPlaceholder`) }}" id="search-input-desktop">
+                        <a class="search-button search-toggle" id="search-toggle-desktop" title="{{ T `search` }}">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="{{ T `clear` }}">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span>
+                {{- end -}}
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="{{ T "switchTheme" }}">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+                {{- if .Site.IsMultiLingual -}}
+				{{- end -}}
+				<a class="" href="{{ printf "%s/%s" .Site.Params.cURL "/ui/" }}" target="{{ printf "%s/%s" .Site.Params.cURL "/ui/" }}" style="" title="Notice">
+					<i class="fas fa-solid fa-bell" style="font-size:18px" aria-hidden="true"></i>	
+					<sup id="notice" style="left:-0.5em;top: -1em; font-weight: 600;"></sup>
+				</a>
+
+				<a class="login-btn" title="Login" style="fill:#ffffff">
+		<svg xmlns="http://www.w3.org/2000/svg"
+			 xmlns:xlink="http://www.w3.org/1999/xlink" style="width:3rem; height: 3rem; margin-bottom:-1.09rem;" focusable="false"  aria-hidden="true" viewBox="0 0 24 24" ><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
+					<sup id="user" style="left:-0.5em;top: -1.2em; font-weight: 600; color:#ffffff">登录</sup>
+				</a>				
+				<a class="user hide" title="{{ T "login" }}">
+ 					
+					<span class="name" ></span>
+					<sup class="logout" title="logout" style="top: -1em; left:-0.5em"><svg class="wl-close-icon" viewBox="0 0 1024 1024" width="24" height="24"><path d="M697.173 85.333h-369.92c-144.64 0-241.92 101.547-241.92 252.587v348.587c0 150.613 97.28 252.16 241.92 252.16h369.92c144.64 0 241.494-101.547 241.494-252.16V337.92c0-151.04-96.854-252.587-241.494-252.587z" fill="currentColor"></path><path d="m640.683 587.52-75.947-75.861 75.904-75.862a37.29 37.29 0 0 0 0-52.778 37.205 37.205 0 0 0-52.779 0l-75.946 75.818-75.862-75.946a37.419 37.419 0 0 0-52.821 0 37.419 37.419 0 0 0 0 52.821l75.947 75.947-75.776 75.733a37.29 37.29 0 1 0 52.778 52.821l75.776-75.776 75.947 75.947a37.376 37.376 0 0 0 52.779-52.821z" fill="#888"></path></svg></sup>	
+
+				        				
+				</a>				
+
+        </div>
+    </div>
+
+</div>
+
+
+
+</header>
+
+{{- /* Mobile header */ -}}
+<header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="{{ .Site.Home.RelPermalink }}" title="{{ .Site.Title }}">
+                    {{- with .Site.Params.header.title -}}
+                        {{- with .logo -}}
+                            {{- dict "Src" . "Class" "logo" | partial "plugin/img.html" -}}
+                        {{- end -}}
+                        {{- with .pre -}}
+                            <span class="header-title-pre">{{ . | safeHTML }}</span>
+                        {{- end -}}
+                        {{- if .typeit -}}
+                            {{- $id := dict "Content" .name "Scratch" $.Scratch | partial "function/id.html" -}}
+                            <span id="{{ $id }}" class="typeit" style="color:#2d96bd"></span>
+                            {{- dict $id (slice $id) | dict "typeitMap" | merge ($.Scratch.Get "this") | $.Scratch.Set "this" -}}
+                        {{- else -}}
+                            {{- .name -}}
+                        {{- end -}}
+                        {{- with .post -}}
+                            <span class="header-title-post">{{ . | safeHTML }}</span>
+                        {{- end -}}
+                    {{- else -}}
+                        {{- .Site.Title -}}
+                    {{- end -}}
+                </a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile">
+            {{- if .Site.Params.search.enable -}}
+                <div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="{{ .Site.Params.search.placeholder | default (T `searchPlaceholder`) }}" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="{{ T `search` }}">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="{{ T `clear` }}">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        {{ T `cancel` }}
+                    </a>
+                </div>
+            {{- end -}}
+            {{- $currentPage := . -}}
+			{{- range .Site.Menus.main -}}
+				{{ if .HasChildren }}
+					<div class="dropdown">
+						<a {{ if .URL }}href="{{ .URL }}"{{ else }}href="javascript:void(0);"{{ end }} class="menu-item menu-more dropbtn" title="{{ .Title }}" {{ if eq .Post "_blank" }}target="_blank" rel="noopener"{{ end }}>
+							{{- .Pre | safeHTML }} {{ .Name }} {{ if ne .Post "_blank" }}{{ .Post | safeHTML -}}{{ end }}
+						</a>
+						<div class="menu-more-content dropdown-content">
+							{{- range .Children -}}
+								{{- $url := .URL | relLangURL -}}
+								{{- with .Page -}}
+									{{- $url = .RelPermalink -}}
+								{{- end -}}
+									<a href="{{ $url }}" title="{{ .Title }}" {{ if eq .Post "_blank" }}target="_blank" rel="noopener"{{ end }}>{{- .Pre | safeHTML }} {{ .Name }} {{ if ne .Post "_blank" }}{{ .Post | safeHTML -}}{{ end }}</a>
+							{{- end -}}
+						</div>
+					</div>
+				{{ else }}
+					{{- $url := .URL | relLangURL -}}
+					{{- with .Page -}}
+						{{- $url = .RelPermalink -}}
+					{{- end -}}
+					<a class="menu-item{{ if $.IsMenuCurrent `main` . | or ($.HasMenuCurrent `main` .) | or (eq $.RelPermalink $url) }} active{{ end }}" href="{{ $url }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if (urls.Parse $url).Host }} rel="noopener noreffer" target="_blank"{{ end }}>
+						{{- .Pre | safeHTML }} {{ .Name }} {{ if ne .Post "_blank" }}{{ .Post | safeHTML -}}{{ end }}
+					</a>
+				{{- end -}}
+			{{- end -}}
+            <a href="javascript:void(0);" class="menu-item theme-switch" title="{{ T "switchTheme" }}">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+            {{- if .Site.IsMultiLingual -}}
+
+            {{- end -}}
+
+        </div>
+    </div>
+	
+<script>
+  function login({ serverURL, lang }) {
+	const width = 450;
+	const height = 450;
+	const left = (window.innerWidth - width) / 2;
+	const top = (window.innerHeight - height) / 2;
+
+	const handler = window.open(
+	  `${serverURL}/ui/login?lng=${encodeURIComponent(lang)}`,
+	  "_blank",
+	  `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
+	);
+
+	handler?.postMessage({ type: "TOKEN", data: null }, "*");
+
+	return new Promise((resolve) => {
+	  const receiver = ({ data }) => {
+		if (!data || typeof data !== "object" || data.type !== "userInfo")
+		  return;
+
+		if (data.data.token) {
+		  handler?.close();
+
+		  window.removeEventListener("message", receiver);
+
+		  resolve(data.data);
+		}
+	  };
+	  window.addEventListener("message", receiver);
+	});
+  }
+
+  const USER_KEY = "WALINE_USER";
+  function getUserInfo() {
+	const item = localStorage[USER_KEY] || sessionStorage[USER_KEY];
+	try {
+	  return JSON.parse(item);
+	} catch (e) {
+	  return;
+	}
+  }
+
+  function setUserInfo(user) {
+	if (!user) {
+	  delete localStorage[USER_KEY];
+	  delete sessionStorage[USER_KEY];
+	  return;
+	}
+
+	const store = user.remember ? localStorage : sessionStorage;
+	store.setItem(USER_KEY, JSON.stringify(user));
+	localStorage.setItem(USER_KEY, JSON.stringify(user));
+
+  }
+
+  function loggedAction(userInfo) {
+
+	if(JSON.stringify(userInfo) == "{}" || userInfo== null){
+	LoginBtn.classList.remove("hide");
+	UserBlock.classList.add("hide");
+	} else {
+	UserNameBlock.innerHTML = `<img src=${userInfo.avatar} alt="avatar" style="width:3rem; height: 3rem; margin-bottom:-1.09rem; border-radius: var(--waline-avatar-radius); border: var(--waline-border);">`;
+	LoginBtn.classList.add("hide");
+	UserBlock.classList.remove("hide");
+	}
+	
+  }
+
+  const LoginBtn = document.querySelector(".login-btn");
+  const UserBlock = document.querySelector(".user");
+  const UserNameBlock = document.querySelector(".name");
+  const LogoutBtn = document.querySelector(".logout");
+  const userInfo = getUserInfo();
+  const wa = document.querySelector("#waline");
+  
+  LoginBtn.style.fill = "currentColor";
+  document.getElementById('user').style.color = "currentColor";
+  console.log()
+  if(JSON.stringify(userInfo) != "{}" && userInfo!= null){
+  userInfo && loggedAction(userInfo);}
+
+  LoginBtn.addEventListener("click", async () => {
+	const user = await login({
+	  serverURL: '{{ $.Site.Params.cURL }}',
+	  lang: "zh-CN"
+	});
+	setUserInfo(user);
+	loggedAction(user);
+	location.reload();
+
+	<!-- console.log(waline.destory()) -->
+  <!-- {{- $waline := .Site.Params.page.comment.waline | default dict -}} -->
+	<!-- history.replaceState({},"","/tool"); -->
+	<!-- waline.update(); -->
+	<!-- location.reload(); -->
+		    	<!-- Waline.init({ -->
+		    	  <!-- el: '#waline', -->
+				  <!-- meta: {{ $waline.meta }}, -->
+		    	  <!-- requiredMeta: {{ $waline.requiredMeta }}, -->
+		    	  <!-- login: {{ $waline.login }}, -->
+				  <!-- placeholder: {{ $waline.placeholder }}, -->
+		    	  <!-- serverURL: {{ $waline.serverURL }}, -->
+		    	  <!-- avatarCDN: {{ $waline.avatarCDN }}, -->
+		    	  <!-- pageSize: {{ $waline.pageSize }}, -->
+		    	  <!-- avatar: {{ $waline.avatar }}, -->
+		    	  <!-- lang: {{ $waline.lang }}, -->
+				  <!-- visitor: {{ $waline.visitor }}, -->
+				  <!-- highlight: {{ $waline.highlight }}, -->
+				  <!-- uploadImage: {{ $waline.uploadImage }}				   -->
+		    	<!-- }); -->
+				<!-- console.log(waline)	 -->
+
+	<!-- document.getElementById(".wl-login-info").remove(); -->
+  });
+  
+  LogoutBtn.addEventListener("click", async () => {
+	setUserInfo();
+	LoginBtn.classList.remove("hide");
+	UserBlock.classList.add("hide");
+	location.reload();
+	
+	
+	
+  });
+  
+	let orignalSetItem = localStorage.setItem;
+	localStorage.setItem = function (key, newValue) {
+	   let setItemEvent = new Event('setItemEvent');
+	   setItemEvent.newValue = newValue;
+	   orignalSetItem.apply(this, arguments);
+	   window.dispatchEvent(setItemEvent);
+	   
+	};
+
+	  window.addEventListener("storage", function (e) {
+		const userInfo = getUserInfo();
+		loggedAction(userInfo);	
+	});
+	
+	window.addEventListener("setItemEvent", function (e) {
+		
+		const userInfo = getUserInfo();
+		loggedAction(userInfo);
+	});	
+  
+</script>
+	
+<!-- <script>	 -->
+ <!-- (function() { -->
+
+	<!-- function run() {	 -->
+		<!-- try{ -->
+		<!-- document.querySelector(".wl-login-info").classList.add("hide"); -->
+		<!-- }catch(e){}					 -->
+		<!-- setTimeout(run, 1);		 -->
+	<!-- } -->
+	
+	<!-- run(); -->
+<!-- })(); -->
+
+<!-- </script> -->
+
+<script>
+
+<!-- (function() { -->
+
+	<!-- function run() { -->
+		
+		<!-- try{ -->
+			<!-- var token = localStorage.getItem('WALINE_USER'); -->
+			<!-- token = JSON.parse(token);  -->
+			<!-- avatar=token.avatar; -->
+			<!-- console.log(token,avatar) -->
+			
+			<!-- var data = {}; -->
+			<!-- if(JSON.stringify(token) == "{}"){ -->
+			<!-- var user= document.getElementById('user'); -->
+			<!-- console.log(user)			 -->
+			<!-- user.innerHTML = `<button class="login-btn">Login</button><button class="logout">Logout</button>` 	 -->
+			<!-- }			 -->
+			<!-- console.log(user.innerHTML) -->
+			<!-- user.classList.remove("search-footer"); -->
+			<!-- user.attr('href','/authors/bachelor');  -->
+		<!-- }catch(e){ -->
+				
+				<!-- }		 -->
+			
+		<!-- setTimeout(run, 1); -->
+		
+	<!-- } -->
+	<!-- run(); -->
+<!-- })(); -->
+
+	
+</script>			
+	
+</header>
+
+{{- if .Site.Params.search.enable -}}
+    <div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div>
+{{- end -}}

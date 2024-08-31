@@ -1,0 +1,42 @@
+.page {
+  position: relative;
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+  
+  padding: 0 2rem;
+  [data-header-desktop] & {
+    padding-top: var(--header-height);
+  }
+
+  [data-home=single] & {
+    padding-top: 0;
+  }
+  
+  [data-header-desktop=normal] & {
+    padding-top: 0;
+  }
+
+  @include blur;
+}
+
+.single[data-single="single"] {
+
+  [theme=dark] & {
+    color: $global-font-color-dark;
+    background-color: $global-background-color-dark;
+  }
+  [theme=black] & {
+    color: $global-font-color-black;
+    background-color: $global-background-cube-black;
+  }
+
+}  
+
+
+@import "_single";
+@import "_special";
+@import "_archive";
+@import "_home";
+@import "_404";
+@import "_box";

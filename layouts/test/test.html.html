@@ -1,0 +1,344 @@
+{{- define "title" }}
+    {{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" }} - {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+
+<link rel="stylesheet" href="/editor/css/editormd.css" />
+
+
+<!-- Require js -->
+<script src="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.2.0/dist/voerro-vue-tagsinput.js"></script>
+
+	<form action="https://internationalcommunism.com/db/edit" method="post" id="mdform"  enctype="multipart/form-data" accept-charset="UTF-8" >
+		<div class="work" id="work">
+			
+			<input type="search" v-model="title" name="title" placeholder="your title..."
+	class="title">
+	
+			<input type="submit" value="发布文章" class="bn">
+		</div>	
+	<div id="app" class="app">
+		
+		<tags-input element-id="tags" v-model="tags" 
+			:existing-tags="[]"
+			:typeahead="true"
+			:add-tags-on-space="true"
+			:add-tags-on-blur="true"
+			>
+			
+		
+		</tags-input>
+
+	</div>	
+
+	</form>	
+	
+
+<script>
+
+	
+	title = new Vue({ 
+	  el: '#work',
+	  data: {
+		title: ''
+	  },
+	  mounted() {
+		if (localStorage.title) {
+		  this.title = localStorage.title;
+		};
+		console.log(this)
+		
+	  },
+	  watch: {
+		title(newtitle) {
+		  localStorage.title = newtitle;
+		}
+	  }
+	});	
+	
+</script>
+
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="/editor/editormd.min.js"></script>
+<link href="//unpkg.com/@waline/client@v2/dist/waline.css" rel="stylesheet">
+<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+
+<div id="waline" class="edwl"></div>
+
+<div id="editor" class="" style="width:80%;height:calc(100%- var(--header-height))" data-home="posts">
+	<textarea class="editormd-html-textarea" style="display: none" id="htmltext" form="mdform" name="content"></textarea>
+</div>
+
+
+
+<script>	
+
+	function getquery(name) {
+		let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		let r = window.location.search.substr(1).match(reg);
+		if (r != null) {
+			return decodeURIComponent(r[2]);
+		};
+		return null;
+	}
+
+	var isMobile = window.matchMedia && window.matchMedia('only screen and (max-width: 450px)').matches;
+
+
+		var queryString = window.location.search;
+		console.log(queryString);
+		
+		var work = document.querySelector(".work");
+		var urlput = document.createElement("div");
+		work.appendChild(urlput);
+
+async function getonlinearticle() {
+
+		articleurl=getquery("url");
+		
+		if(getquery("online")) {
+		var onlyonline = document.createElement("div");
+		onlyonline.innerHTML = `<input type="hidden" name="online" value="true">`; work.appendChild(onlyonline);}
+		
+		
+		try{
+		const data = await fetch({{ $.Site.Params.dataURL }}+"?url="+getquery("url"));
+		article = await data.json();
+		} catch(e){ article = new Object() };
+		
+		<!-- 在线更新数据库中没有的本地文章 -->
+		if(Object.keys(article).length === 0) {
+		title.title = getquery("title");
+		author=getquery("author");
+		authorLink=getquery("authorLink");
+		<!-- multitype=getquery("url").match(/\/([0-9a-zA-Z\_]*)\//)[1]; -->
+		try{
+		if (getquery("tags")!="") {  
+		oldtags=getquery("tags").replace(/\[|]/g,'').trim().split(/\s+/);
+		for (var i=0,len=oldtags.length; i<len; i++) { 
+		oldtags[i] =`{"key":"","value":"${oldtags[i]}"}`; 
+		oldtags[i]=JSON.parse(oldtags[i])
+		};
+		console.log(oldtags)
+		localStorage.tags = JSON.stringify(oldtags);     };	
+		}catch(e){};
+		multitype=getquery("multitype").replace(/\[|]/g,'').trim().split(/\s+/);
+		avatar = getquery("avatar");
+		getoldarticle(); console.log("转offline")
+		} else {
+		
+		
+		try{
+		if (!!article[0].title) {multitype=article[0].multitype};
+		title.title =article[0].title;}catch(e){
+		multitype="";
+		};
+		try{
+		author=article[0]['author']} catch(e){  };
+		try{ avatar= article[0]['avatar']} catch(e){  };
+		try{
+		authorLink=article[0]['authorLink']} catch(e){  };
+		try{
+		oldtags=article[0]['tags']
+
+		for (var i=0,len=oldtags.length; i<len; i++) { 
+		oldtags[i] =`{"key":"","value":"${oldtags[i]}"}`; 
+		oldtags[i]=JSON.parse(oldtags[i])
+		};
+		console.log(oldtags)
+		localStorage.tags = JSON.stringify(oldtags);		
+		}catch(e){};
+		
+		taglist = new Vue({
+			el: '#app',
+			components: { "tags-input": VoerroTagsInput },	
+			data:{
+				tags:[]
+			},
+		
+		mounted() {
+		if(localStorage.tags) this.tags = JSON.parse(localStorage.tags);
+		},	
+		
+		watch:{
+		tags(newtags) {
+		  localStorage.tags = JSON.stringify(newtags);
+		}}
+		
+		});		
+		
+		
+		if (isMobile) {					
+			
+			try{localStorage.WALINE_COMMENT_BOX_EDITOR=article[0].markdown;}catch(e){};
+			var waline = Waline.init({
+			  el: '#waline',
+			  serverURL: {{.Site.Params.page.comment.waline.serverURL }},
+			  login: 'force',
+			  locale: {placeholder:'Hello, welcome to write here!'}
+			
+			});
+			
+			mdtext = document.querySelector("#wl-edit");
+			mdtext.setAttribute('form','mdform');
+			mdtext.setAttribute('name','markdown');
+			
+			hltext = document.getElementById("htmltext");
+			
+		}
+	  
+		else {
+
+			try{holder=article[0].markdown;
+			document.getElementById("editor").innerHTML=
+				`<textarea class="editormd-markdown-textarea" id="md" v-model="md" style="display:none;" form="mdform" name="markdown">"${holder}"</textarea>
+				<textarea class="editormd-html-textarea" form="mdform" name="content"></textarea>`
+			}catch(e){};
+					
+				eh = document.body.offsetHeight - 162;
+				console.log(eh)
+
+				testEditor = editormd("editor", {
+					width  : "80%",
+					height : eh,
+					placeholder : "开始编辑maekdown文档...", 
+					path   : "/editor/lib/",
+					saveHTMLToTextarea : true
+				});			
+				mdtext = document.getElementById("md");
+		}
+		
+
+		run();
+	}	
+}
+
+
+function getoldarticle() {
+
+    taglist = new Vue({
+        el: '#app',
+        components: { "tags-input": VoerroTagsInput },	
+		data:{
+			tags:[]
+		},
+    
+	mounted() {
+    if(localStorage.tags) this.tags = JSON.parse(localStorage.tags);
+	},	
+	
+	watch:{
+    tags(newtags) {
+      localStorage.tags = JSON.stringify(newtags);
+    }}
+	
+	});
+
+	if (isMobile) {					
+		
+		
+		if (getquery("markdown")) {
+		
+		localStorage.WALINE_COMMENT_BOX_EDITOR = getquery("markdown")
+		
+		} else {
+		
+		if (!localStorage.WALINE_COMMENT_BOX_EDITOR && !!localStorage.md && !getquery("url")) {localStorage.WALINE_COMMENT_BOX_EDITOR = localStorage.md;}
+		
+		}
+		
+		var waline = Waline.init({
+		  el: '#waline',
+		  serverURL: {{.Site.Params.page.comment.waline.serverURL }},
+		  login: 'force',
+		  locale: {placeholder:'Hello, welcome to write here!'}
+		
+		});
+		
+		mdtext = document.querySelector("#wl-edit");
+		mdtext.setAttribute('form','mdform');
+		mdtext.setAttribute('name','markdown');
+		hltext = document.getElementById("htmltext");
+	}
+	  
+	else {
+
+	if (getquery("markdown")) {
+	holder = getquery("markdown")
+	} else {
+	if (!!localStorage.md) {holder = localStorage.md;} else { holder='### Hello, welcome to write here!'};
+	
+	}
+	
+	
+	document.getElementById("editor").innerHTML=
+		`<textarea class="editormd-markdown-textarea" id="md" v-model="md" style="display:none;" form="mdform" name="markdown">${holder.replace(/^['|"](.*)['|"]$/, "$1")}</textarea>
+		<textarea class="editormd-html-textarea" form="mdform" name="content"></textarea>`
+			
+		eh = document.body.offsetHeight - 162;
+		console.log(eh)
+
+		testEditor = editormd("editor", {
+			width  : "80%",
+			height : eh,
+			placeholder : "开始编辑maekdown文档...", 
+			path   : "/editor/lib/",
+			saveHTMLToTextarea : true
+		});			
+		mdtext = document.getElementById("md");
+	}	
+
+	run();
+
+}
+
+
+	function run() {	
+		try{		
+		if (isMobile) {hltext.value=document.querySelector("#waline > div > div.wl-comment > div.wl-panel > div.wl-preview > div").innerHTML};
+		
+		if (!getquery("url")) { articleurl=`/authors/${userInfo.display_name}/${localStorage.title}`;
+		author=userInfo.display_name;
+		authorLink=userInfo.display_name;
+		avatar=userInfo.avatar;
+		}
+		if (!avatar) {avatar="https://api.cyfan.top/acg"};
+		urlput.innerHTML=`
+		<input type="hidden" name="url" id="url" value=${articleurl}>
+		<input type="hidden" name="author" id="" value="${author}">
+		<input type="hidden" name="authorLink" id="" value=${authorLink}>
+		<input type="hidden" name="avatar" id="" value=${avatar}>
+		<input type="hidden" name="multitype" id="" value=${multitype}>
+		<input type="hidden" name="wordCount" id="" v-model="length" value=${mdtext.value.length}>
+		<input type="hidden" name="summary" id="summary">
+		<input type="hidden" name="date" id="" value=${new Date().toISOString()}>
+		`;		
+		<!-- console.log(mdtext,mdtext.innerHTML) -->
+		document.getElementById("summary").value=mdtext.value.slice(0,200).replace(/<\/?.+?\/?>/g,
+    '').replace(/[`:_.~!@#$%^&*()\+=<>?"{}|\/\\[\]·~！\r\n]/g,
+    '').replace(/[#]/g, '');
+		localStorage.md = mdtext.value; 
+		
+		}catch(e){}					
+		setTimeout(run, 1000);		
+	}
+
+		if (getquery("url")) { getonlinearticle() } else {
+		url = queryString.substr(1);
+		multitype=url.substr(1);			articleurl=`/authors/${userInfo.display_name}/${localStorage.title}`
+		getoldarticle();
+		
+		};
+		
+
+		
+
+	
+	
+	
+</script>
+
+
+
+{{- end -}}

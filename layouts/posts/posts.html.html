@@ -1,0 +1,60 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+
+    <div class="page home archive blank" data-home="posts">
+        {{- /* Title */ -}}
+		<div class="home-profile archive">
+		
+		    {{- with $profile.subtitle -}}
+        <div class="home-subtitle">
+            {{- if $profile.typeit -}}
+                {{- $id := dict "Content" . "Scratch" $.Scratch | partial "function/id.html" -}}
+                <div id="{{ $id }}" class="typeit"></div>
+                {{- dict $id (slice $id) | dict "typeitMap" | merge ($.Scratch.Get "this") | $.Scratch.Set "this" -}}
+            {{- else -}}
+                {{- . | safeHTML -}}
+            {{- end -}}
+        </div>
+			{{- end -}}
+		
+		
+		
+			<h2 class="sing animate__animated animate__pulse animate__faster" >
+			
+
+				<a href="/">{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup>{{ len .Site.RegularPages }}</sup></a>
+				
+			</h2>
+		</div>
+		
+	</div>
+    <div class="page home archive" id="test" data-home="posts">		
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- $pages := .Site.RegularPages -}}
+			
+			
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- with $posts.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+            {{- range $pages.Pages -}}
+				{{- .Render "summary" -}}			
+            {{- end -}}
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+	
+ {{- partial "update.html" . -}}
+ 
+{{- end -}}

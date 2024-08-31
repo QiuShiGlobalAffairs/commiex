@@ -1,0 +1,91 @@
+{{- define "title" -}}
+    {{- .Title }} - {{ T .Data.Singular | default .Data.Singular }} - {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+
+
+    <div class="box archive" >
+        {{- /* Title */ -}}
+        <h2 class="sing animate__animated animate__pulse animate__faster">
+            {{- $taxonomy := .Data.Singular -}}
+
+			{{- if eq $taxonomy "regions" -}}
+				<i class="far fa-folder-open fa-fw"></i>&nbsp;{{ .Title }}<sup id="sup">{{ len .Pages }}</sup>
+			{{- else if eq $taxonomy "tag" -}}
+							
+					<a href="/{{.Title}}"><i class="fas fa-tag fa-fw"></i>&nbsp;{{ .Title }}<sup id="sup">{{ len .Pages }}</sup></a>				
+				
+			{{- else -}}			
+ 
+                <a> {{ .Title }}<sup id="sup">{{ len .Pages }}</sup> </a>
+            {{- end -}}
+        </h2>
+
+
+
+        {{- /* Paginate */ -}}
+        {{- if .Pages -}}
+            {{- $pages := .Pages.GroupByDate "2006-01" -}}
+            {{- with .Site.Params.list.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+
+				{{ if and (gt (len $pages.PageGroups) 1) (gt (len .Pages) 60) }}
+				<div class="categories">
+				{{- range $pages.PageGroups -}}
+			
+				<div class="card">
+				<div class="card-item-wrapper">
+				<h3 class="card-item-title">
+					
+						<a href="/timestamp/{{.Key}}"><i class="far fa-folder fa-fw" aria-hidden="true"></i>&nbsp;{{ .Key }} <sup>{{ len .Pages }}</sup></a>
+					
+				</h3>
+				{{- range first 5 .Pages -}}
+					<article class="item">
+						<a href="{{ .RelPermalink }}" class="item-link">
+							{{- .Title | emojify -}}
+						</a>
+                        <span class="item-date">
+                            <a href="{{ .RelPermalink }}"> {{- $.Site.Params.list.dateFormat | default "01-02" | .Date.Format -}}</a>
+                        </span>					
+					</article>
+				{{- end -}}
+				{{- if gt (len .Pages) 5 -}}
+					<span class="more">
+						<a href="/timestamp/{{.Key}}" class="more-single-link">{{ "More" }} >></a>
+					</span>
+				{{- end -}}
+					</div>
+				</div>	
+				{{- end -}}
+				</div>    
+				{{- else -}}
+			
+				<div class="home" id="test" data-home="posts">
+					{{- range .Pages -}}
+						{{- .Render "summary" -}}	
+					{{- end -}}
+				</div> 		
+
+
+
+				
+				{{- end -}}								
+
+		 	
+
+           
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+	
+
+<script>
+  url = {{ $.Site.Params.dataURL }}+'?'+ {{.Section}} +'='+{{.Title}};
+</script>	
+	
+{{- end -}}

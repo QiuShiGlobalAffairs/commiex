@@ -1,0 +1,1478 @@
+[
+    {
+        "taxonomy": "亚洲共运",
+        "icon": "fa-star",
+        "links": [
+		{
+			"id": "CPP",
+			"contact": "prwc@cpp.ph",
+			"logo": "/agency/CPP.jpg",
+			"title":"菲律宾共产党",
+			"name": "Philippine Communist Party",
+			"region": "Philippines",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://philippinerevolution.nu/  ",
+			"continent": "Asia",
+			"desc":"由何塞·马利亚·西松建立于1968年12月26日。1960年代后期开始针对菲律宾 政权的游击战，旨在通过暴力革命推翻菲律宾政府，建立一个社会主义国家。至今 仍然是一个地下政治组织，以秘密方式运作，领导着新人民军和菲律宾民族民主阵线。"
+		},  {
+			"id": "CPN",
+			"contact": "",
+			"logo": "/agency/CPN.jpg",
+			"title":"尼泊尔革命共产党",
+			"name": " Communist Party",
+			"region": "",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Asia",
+			"desc":"2023年5月1号，CPN（多数派）和CPN（革命毛派）合并，成立尼泊尔革命共产党，修正主义和机会主义者成立了名为“社会主义阵线”的议会选举政党联盟,成尼议会第三大党 。"
+		}, 
+		{
+			"id": "CPN",
+			"contact": "",
+			"logo": "/agency/CPN.jpg",
+			"title":"尼泊尔社会主义阵线",
+			"name": "Samajbadi Morcha",
+			"region": "",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Asia",
+			"desc":"2023年6月19日，尼泊尔共产党（毛主义中心）、尼泊尔人民社会主义党、尼泊尔共产党（社会主义者联合）以及尼泊尔共产党（毕普拉布派）.修正主义和机会主义者成立了名为“社会主义阵线”的议会选举政党联盟,成尼议会第三大党 。"
+		}, 
+		{
+			"id": "CPI (Maoist)",
+			"contact": "",
+			"logo": "/agency/CPI (Maoist).png",
+			"title": "印度共产党（毛派）",
+			"region": "India",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://icspwindia.wordpress.com/",
+			"continent": "Asia",
+			"desc":"该党被印度政府视为非法政党、恐怖组织。该党于2004年9月21日由印度共产 党（马列）人民战争和印度毛主义共产主义中心合并而成。"
+		}, {
+			"id": "",
+			"contact": "",
+			"logo": "/agency/CPI (Maoist).png",
+			"title": "缅甸共产党",
+			"region": "Burma",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.cp-burma.org/",
+			"continent": "Asia",
+			"desc":"目前，该党在缅甸属于非法组织，主要在秘密状态下运作。2021年8月，在克钦独立军的支持下，缅共宣布重新开展武装斗争，成立人民解放军。目前人民解放军主要活动在克钦邦和实皆省。"
+		},{
+			"id": "CPJ",
+			"contact": "http://www.japan-press.co.jp/ (+813) 54748421 (+813) 37460767 intl@jcp.jp",
+			"logo": "/agency/RCL.png",
+			"title": "中核派",
+			"region": "Japan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.zenshin.org/zh/",
+			"continent": "Asia",
+			"desc":"革命的共产主义者同盟全国委员会是日本的一个新左翼组织，通称中核派。 中核派的目标为“反帝国主义、反斯大林主义的无产阶级世界革命”，曾主张 托洛茨基主义。警察白书将其称为“极左暴力集团”。"
+			
+		}, 
+		{
+			"id": "ACP",
+			"contact": "(+99) 412441753 (+99) 412948937 r.kobalt@mail.ru",
+			"logo": "/agency/azercp1.png",
+			"title": "不丹共产党（马列毛主义）",
+			"region": "Azerbaidjan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://thenewcommunistwave.blogspot.com/",
+			"continent": "Asia",
+			"desc":"不丹共产党（马列毛）于2001年11月7日成立,目标是通过新 民主主义革命推翻不丹君主政体和旺楚克王朝。2008年3月官方开始拘捕党员，并 在2010年正式查禁该党。不丹革命事业近年遭受了较大挫折，目前处于不活跃状态。"
+		}, {
+			"id": "CPP",
+			"contact": "(+92) 222654531 (+92) 222654531 cppk1948@gmail.com",
+			"logo": "/agency/cpp.png",
+			"name": "Communist Party of Pakistan",
+			"title": "巴基斯坦共产党",
+			"region": "Pakistan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.cpp.net.pk/",
+			"continent": "Asia",
+			"desc":"CPP 有两个主要目标。首先是反对美国政策，其次是为社会主义而奋斗。我是工程师 Jameel Ahmad Malik，CPP 主席。在巴基斯坦，共产党成立于 1948 年，但 CPP 于 1954年在美国的指示下被禁止，其最高领导层在所谓的“拉瓦尔品第阴谋案”中被捕入狱，在取消对其存在的禁令后，巴基斯坦共产党于 1999 年重新成立为一个公开的政党。"
+		}, {
+			"id": "CPB",
+			"contact": "(+88) 029558612 (+88) 027172845 (+88) 029552333 cpbinter@gmail.com info@cpb.org.bd",
+			"logo": "/agency/cpb.png",
+			"title": "孟加拉共产党",
+			"name": "Communist Party of Bangladesh",
+			"region": "Bangladesh",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.cpbbd.org/",
+			"continent": "Asia",
+			"desc":"东孟加拉共产党－马列、东孟加拉共产党－马列（红旗）和东孟加拉共产党－马列（人民战争）。该党及这几个分裂团体互相敌对，动辄使用武力杀害对方成员。"
+		}, {
+			"id": "",
+			"contact": "",
+			"logo": "/agency/wpb.png",
+			"title": "阿富汗共产党（毛主义）",
+			"region": "",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Asia",
+			"desc":"阿富汗共产党（毛主义）已经分裂为两派，他们都签署了2022年五一联合声明。其中一派称为阿富汗共产党（毛主义），另一派称为阿富汗共产党（毛主义）-永恒火焰。"
+		},  {
+			"id": "CPJ",
+			"contact": "http://www.japan-press.co.jp/ (+813) 54748421 (+813) 37460767 intl@jcp.jp",
+			"logo": "/agency/cpj.png",
+			"title": "日本共产党",
+			"name": "Japanese Communist Party",
+			"region": "Japan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.jcp.or.jp",
+			"continent": "Asia",
+			"desc":"日本共产党主张建设社会主义社会、共产主义社会，並且废除日美安保条约，但是近年日益滑向社会民主主义。"
+		},
+{
+			"id": "KAZCP",
+			"contact": "(+772) 72911400 komparty@list.ru",
+			"logo": "/agency/kazcp.png",
+			"title": "Communist Party of Kazakhstan",
+			"region": "Kazakhstan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Asia"
+		}, {
+			"id": "SMK",
+			"contact": "socialismkz@gmail.com ainurkurmanov@gmail.com",
+			"logo": "/agency/smk.jpg",
+			"title": "Socialist Movement of Kazakhstan",
+			"region": "Kazakhstan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.socialismkz.info/",
+			"continent": "Asia"
+		}, {
+			"id": "PCK",
+			"contact": "(+996) 312624999 (+996) 312660401 mars40@list.ru",
+			"logo": "/agency/pck.png",
+			"title": "Party of the Communists of Kyrgyzstan",
+			"region": "Kyrgyzstan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "Kirgizia",
+			"continent": "Asia"
+		}, {
+			"id": "WPK",
+			"contact": "(+850) 23815855 (+39) 0654220749 (+850) 23814657 (+39) 54210090 wpkint@star-co.net.kp dprkembroma@outlook.com",
+			"logo": "/agency/wpk.png",
+			"title": "朝鲜劳动党",
+			"name": "Workers Party of Korea",
+			"region": "North Korea",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.rodong.rep.kp/cn/",
+			"desc":"金正日强调主体思想是“不能在马克思列宁主义框架内解释的独创的思想”",
+			"continent": "Asia"
+		}, {
+			"id": "PRP",
+			"contact": "(+856) 21414042 (+856) 214140423 party.relationsdep.la@gmail.com ri.dept.la@gmail.com",
+			"logo": "/agency/prp.png",
+			"title": "Peoples'Revolutionary Party",
+			"region": "Laos",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Asia"
+		}, {
+			"id": "UML",
+			"contact": "(+977) 14378055 (+977) 14015980 dfauml@gmail.com",
+			"logo": "/agency/uml.png",
+			"title": "Communist Party of Nepal UML",
+			"region": "Nepal",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.ncp.org.np",
+			"continent": "Asia"
+		},{
+			"id": "KPRF",
+			"contact": "(+74) 956927646 (+74) 956927646 (+74) 956925685 inter@kprf.ru zabirov@duma.gov.ru",
+			"logo": "/agency/kprf.png",
+			"title": "Communist Party Of The Russian Federation",
+			"region": "Russia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kprf.ru",
+			"continent": "Asia"
+		}, {
+			"id": "CPSU",
+			"contact": "http://www.cpsu.by cpsu.msk@gmail.com",
+			"logo": "/agency/cpsu.png",
+			"title": "Communist Party of Soviet Union",
+			"region": "Russia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.cpsu.by",
+			"continent": "Asia"
+		}, {
+			"id": "RCWP-CPSU",
+			"contact": "(+78) 122742772 (+78) 122748073 (+78) 122742818 rkrp-ck@yandex.ru",
+			"logo": "/agency/rcwp-cpsu.png",
+			"title": "Russian Communist Workers Party",
+			"region": "Russia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://xn--j1akbb.xn--p1acf/",
+			"continent": "Asia"
+		}, {
+			"id": "UCPSU",
+			"contact": "(+74) 956921769 (+74) 956925476 inter.ucp@gmail.com",
+			"logo": "/agency/ucpsu.png",
+			"title": "Union Of Communist Parties",
+			"region": "Russia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://skpkpss.ru/",
+			"continent": "Asia"
+		}, {
+			"id": "CPSL",
+			"contact": "(+94) 112695328 (+94) 112691610 compartysl@gmail.com",
+			"logo": "/agency/cpsl.png",
+			"title": "Communist Party of Sri-Lanka",
+			"region": "Sri Lanka",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.communistpartyofsrilanka.org/",
+			"continent": "Asia"
+		}, {
+			"id": "KNT",
+			"contact": "(+992) 372232953 (+992) 372232853 (+992) 372351482 (+992) 372232292 lulush@mail.ru communist_party@mail.ru talbakov-555.@mail.ru",
+			"logo": "/agency/knt.png",
+			"title": "Communist Party of Tadjikistan",
+			"region": "Tadjikistan",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kpt.freenet.tj",
+			"continent": "Asia"
+		}, {
+			"id": "VCP",
+			"contact": "(+844) 8436278 (+844) 8436278 (+844) 38234514 (+844) 8045657 IMCWP@cpvic.org.vn cpvic@cpvic.org.vn",
+			"logo": "/agency/vcp.png",
+			"title": "Communist Party of Vietnam",
+			"region": "Vietnam",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.cpv.org.vn",
+			"continent": "Asia"
+		}, {
+			"id": "CPI-M",
+			"contact": "https://www.facebook.com/cpimcc (+91) 1123344918 (+91) 1123747435 (+91) 1123747436 (+91) 1123747483 cc@cpim.org intl@cpim.org",
+			"logo": "/agency/cpim.png",
+			"title": "Communist Party Of India (Marxist)",
+			"region": "India",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.cpim.org",
+			"continent": "Asia"
+		}, {
+			"id": "CPI",
+			"contact": "(+91) 1123232801 (+91) 1123235099 (+91) 1123235058 (+91) 1123235543 internationaldept@communistparty.in cpiofindia@gmail.com",
+			"logo": "/agency/cpi.png",
+			"title": "Communist Party Of India",
+			"region": "India",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.communistparty.in/",
+			"continent": "Asia"
+		}
+        ]
+    },
+    {
+        "taxonomy": "欧洲共运",
+        "icon": "fa-newspaper-o",
+        "links": [
+		{
+			"id": "KKE",
+			"contact": "",
+			"logo": "/agency/kke.png",
+			"name": "Communist Party of Greece",
+			"title": "希腊共产党",
+			"region": "Greece",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://inter.kke.gr/",
+			"continent": "Europe",
+			"desc":"希腊共产党，简称希共（KKE），是希腊的一个反修正主义的马克思列宁主义共 产党。该党近年来在希腊政坛及国际共产主义运动中极其活跃，多次主办共产党和工 人党国际会议，并发起成立共产党和工人党倡议。"
+		}, {
+			"id": "MLPD",
+			"contact": "",
+			"logo": "/agency/mlpd.png",
+			"title": "德国马列主义党",
+			"region": "Germany",
+			"desc":"德国马列主义党是德国的反修正主义的马克思列宁主义政党。1982年，该党由德国共产主义工人联盟的成员建立。参与了革命政党和组织国际协调、马列主 义政党和组织国际会议 (国际通讯)等国际组织。",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.mlpd.de/",
+			"continent": "Europe"
+		}, 		
+
+		{
+			"id": "PCmF",
+			"contact": "",
+			"logo": "",
+			"name": "le Parti Communiste maoïste de France",
+			"title": "法国毛主义共产党",
+			"region": "France",
+			"tags": "communist",
+			"type": "",
+			"url": "",
+			"continent": "Europe",
+			"desc":"康拉德•皮埃尔同志（1937年-2017年）是法国好战的的毛主义者、法国毛主义共产党创始人和领导者、国际支持印度人民战争委员会和本国支持委员会的创始人。2015年创建了法国毛主义共产党。"
+		},	
+		{
+			"id": "CPBML",
+			"contact": "",
+			"logo": "/agency/cpbml.png",
+			"name": "Communist Party of Britain Marxist-Leninist",
+			"title": "英国共产党（马列主义）",
+			"region": "",
+			"tags": "communist",
+			"type": "",
+			"url": "https://cpbml.org.uk/  ",
+			"continent": "Europe",
+			"desc":"该党强烈反对欧盟。该党成员的活动主要聚焦于劳工运动。该党还呼吁英国退出北约。它 还在同一条中强调了最近的大规模移民正在影响国家基础设施的影响的担忧，学校、医院和交 通，超负荷了他们的工作量，损害了本土工人阶级。"
+		},			
+		{
+			"id": "RMP",
+			"contact": "",
+			"logo": "https://rusmaoparty.org/wp-content/uploads/2022/12/cropped-cropped-Untitled-1-3.png",
+			"name": "le Parti Communiste maoïste de France",
+			"title": "俄罗斯毛主义党",
+			"region": "France",
+			"tags": "communist",
+			"type": "",
+			"url": "https://rusmaoparty.org/",
+			"continent": "Europe",
+			"desc":"RMP作为一个活动家组织，正在努力成为一个成熟的政党。在意识形态领域，RMP坚持印度共产党（毛主义）和菲律宾共产党所解释的马克思列宁主义毛主义（MLM）思想，并寻求将MLM的普遍理论应用于俄罗斯的具体情况。"
+		},	
+		
+{
+			"id": "SPD",
+			"contact": "",
+			"logo": "/agency/spd.svg",
+			"title": "德国社会民主党",
+			"region": "Germany",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.spd.de/",
+			"continent": "Europe",
+			"desc":"2013年至今，社民党与不同政党结成执政联盟，组建联合政府。在联邦议院选举中一度拿到1/4的选票。"
+		}, {
+			"id": "PCTE",
+			"contact": "international@pcte.es pcteinternational@gmail.com",
+			"logo": "/agency/pcte.png",
+			"title": "西班牙人民共产党",
+			"name": "Communist Party of the Workers of Spain",
+			"region": "Spain",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.pcte.es",
+			"continent": "Europe",
+			"desc":"西班牙人民共产党是西班牙的一个共产主义政党。它的意识形态是共产主义、马 克思列宁主义。它的政治立场是极左翼。该党是共产党和工人党国际会议的成员。该 党曾加入共产党和工人党倡议。该党的加泰罗尼亚分支是加泰罗尼亚共产主义工人党。"
+			
+		}, {
+			"id": "C",
+			"contact": "(+34) 933184282 (+34) 933180011 internacional@comunistes.cat",
+			"logo": "/agency/c.png",
+			"name": "Communists of Catalonia",
+			"title": "加泰罗尼亚共产主义工人党",
+			"region": "Spain",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		},{
+			"id": "PCF",
+			"contact": "(+33) 140401293 (+33) 140401286 (+33) 142404027 international@pcf.fr interpcf@gmail.com",
+			"logo": "/agency/pcf.png",
+			"title": "French Communist Party",
+			"region": "France",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.pcf.fr",
+			"desc":"法国共产党影响力日渐衰落，和绿党结盟。二战后初期政治实力达到顶峰，最多时拥有党员80多万，曾是法第一大党。法共现沦为边缘党，现党员不足5万，多为工人、雇员、教员、手工业者等。",
+			"continent": "Europe"
+		},  
+		{
+			"id": "pcrf",
+			"contact": "",
+			"logo": "https://pcrf-ic.fr/IMG/siteon0.png",
+			"title": "法国革命共产党",
+			"region": "France",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://pcrf-ic.fr/",
+			"desc":"该党的政治立场是极左翼。该党出版刊物《共产主义干预》。 该党是共产党和工人党倡议的成员。法革共承认古巴和朝鲜是目前建设社会主义的唯二国家。",
+			"continent": "Europe"
+		}, 
+				{
+			"id": "YCL",
+			"contact": "",
+			"logo": "https://challenge-magazine.org/wp-content/uploads/sites/6/2021/12/YCL-Challenge-Logo-Transparent.png",
+			"title": "英国青年共产主义联盟",
+			"region": "",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://challenge-magazine.org/",
+			"desc":"过去的几年里，英国青年共产主义联盟（Young Communist League (YCL)）的成员人数大幅增长。",
+			"continent": "Europe"
+		}, 
+		{
+			"id": "",
+			"contact": "",
+			"logo": "",
+			"title": "晨星报",
+			"name":"Communist Party of Britain",
+			"region": "",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://morningstaronline.co.uk/",
+			"desc":"晨星报是英国共产党的机关报，专注报道社会和工会问题。",
+			"continent": "Europe"
+		}, 
+		
+		{
+			"id": "britaincp",
+			"contact": "(+44) 2086861659 info@communistparty.org.uk international@communistparty.org.uk",
+			"logo": "/agency/britaincp.png",
+			"title": "英国共产党",
+			"name":"Communist Party of Britain",
+			"region": "Britain",
+			"tags": "communist",
+			"type": "news-agency",
+			"desc":"英国共产党党员人数保持在大约1000人左右。在科尔宾担任工党领袖时和工党合作密切。",
+			"url": "https://www.communistparty.org.uk",
+			"continent": "Europe"
+		}, 
+		{
+			"id": "CARC",
+			"contact": "(+44) 2086861659 info@communistparty.org.uk international@communistparty.org.uk",
+			"logo": "/agency/CARC.png",
+			"title": "争取共产主义支持抵抗委员会党",
+			"name":"Partito dei Comitati di Appoggio alla Resistenza per il Comunismo",
+			"region": "Italy",
+			"tags": "communist",
+			"type": "news-agency",
+			"desc":"CARC是意大利的一个共产主义政党。该党的意识形态 是共产主义、马克思列宁主义、反修正主义、毛主义、新斯大林主义。该党的政治立 场是极左翼。CARC党与其他极左政党和组织（意大利左翼联合会、无神论民主、发明未来、未来城市、 意大利共产党和意大利马克思列宁主义党）一起成为“人民团结”协调的一部分，旨在制定和实施 共同的倡议和建议。",
+			"url": "https://www.carc.it/",
+			"continent": "Europe"
+		}, 
+		{
+			"id": "CPA",
+			"contact": "(+37) 410541917 ArmenianCPInt@gmail.com Komkus@mail.ru",
+			"logo": "/agency/cpa.png",
+			"title": "Communist Party of Armenia",
+			"region": "Armenia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		},  {
+			"id": "PKSH",
+			"contact": "(+355) 382274111 (+355) 4251271 gjonbruci5@yahoo.com",
+			"logo": "/agency/pksh.png",
+			"title": "Communist Party of Albania",
+			"region": "Albania",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "KPO",
+			"contact": "international@kpoe.at",
+			"logo": "/agency/kpo.png",
+			"title": "Communist Party of Austria",
+			"region": "Austria",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kpoe.at",
+			"continent": "Europe"
+		}, {
+			"id": "PDA",
+			"contact": "(+43) 6643520469 international@parteiderarbeit.at",
+			"logo": "/agency/pda.png",
+			"title": "Party of Labour of Austria",
+			"region": "Austria",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.parteiderarbeit.at",
+			"continent": "Europe"
+		}, {
+			"id": "BCP",
+			"contact": "(+375) 172934888 atamanovgp@tut.by",
+			"logo": "/agency/bcp.png",
+			"title": "Communist Party of Belarus",
+			"region": "Belarus",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "PC",
+			"contact": "(+32) 493031367 (+32) 478503550 andersenrene@outlook.com particommuniste.liege@gmail.com",
+			"logo": "/agency/pc.png",
+			"title": "Communist Party of Belgium",
+			"region": "Belgium",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.pcb-cpb.com",
+			"continent": "Europe"
+		}, {
+			"id": "PTB",
+			"contact": "http://www.pvda.be (Dutch) (+32) 25040139 (+32) 25040141 international@ptb.be",
+			"logo": "/agency/ptb.png",
+			"title": "Workers'Party of Belgium",
+			"region": "Belgium",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.ptb.be",
+			"continent": "Europe"
+		}, {
+			"id": "NCP",
+			"contact": "(+44) 2072234052 party@ncp.clara.net",
+			"logo": "/agency/ncp.png",
+			"title": "New Communist Party of Britain",
+			"region": "Britain",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.newworker.org",
+			"continent": "Europe"
+		}, {
+			"id": "bulgariacp",
+			"contact": "(+35) 929816093 (+35) 929816093 comparty@abv.bg",
+			"logo": "/agency/bulgariacp.png",
+			"title": "Communist Party of Bulgaria",
+			"region": "Bulgaria",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://comparty.bg/",
+			"continent": "Europe"
+		}, {
+			"id": "bulgcommunists",
+			"contact": "(+35) 98961133 (+35) 9898322455 (+35) 924702573 bcp.gd@mail.bg bcpgd1949@gmail.com",
+			"logo": "/agency/bulgcommunists.png",
+			"title": "Party of the Bulgarian Communists",
+			"region": "Bulgaria",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "SRP",
+			"contact": "(+38) 514835340 (+38) 912219036 (+38) 14835340 srp@srp.hr vladimir.kapuralin@pu.t-com.hr",
+			"logo": "/agency/srp.png",
+			"title": "Socialist Workers'Party of Croatia",
+			"region": "Croatia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.srp.hr",
+			"continent": "Europe"
+		}, {
+			"id": "AKEL",
+			"contact": "",
+			"logo": "/agency/akel.png",
+			"title": "the Progressive Party of the Working People - AKEL",
+			"region": "Cyprus",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.akel.org.cy",
+			"continent": "Europe"
+		}, {
+			"id": "KSCM",
+			"contact": "http://www.kscm.cz/english (+42) 0222897111 (+42) 0222897207 info@kscm.cz leftnews@kscm.cz jaroslav.roman@kscm.cz",
+			"logo": "/agency/kscm.png",
+			"title": "Communist Party of Bohemia and Moravia",
+			"region": "Czech",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kscm.cz",
+			"continent": "Europe"
+		}, {
+			"id": "DK",
+			"contact": "(+45) 38882833 (+45) 38882433 Kpid@Kommunisterne.Dk",
+			"logo": "/agency/denmarkin.png",
+			"title": "Communist Party in Denmark",
+			"region": "Denmark",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kommunisterne.dk",
+			"continent": "Europe"
+		}, {
+			"id": "DKPDK",
+			"contact": "(+45) 33916644 dkp@dkp.dk int@dkp.dk",
+			"logo": "/agency/dkpdk.png",
+			"title": "Communist Party of Denmark",
+			"region": "Denmark",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.dkp.dk",
+			"continent": "Europe"
+		}, {
+			"id": "CPE",
+			"contact": "(+37) 23591174 (+37) 23591174 gungerburg@mail.ru narvaSRG@rambler.ru",
+			"logo": "/agency/cpe.png",
+			"title": "Communist Party of Estonia ",
+			"region": "Estonia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "SKP",
+			"contact": "(+358) 977438150 (+358) 977438160 skp@skp.fi",
+			"logo": "/agency/skp.png",
+			"title": "Communist Party of Finland",
+			"region": "Finland",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.skp.fi",
+			"continent": "Europe"
+		}, {
+			"id": "GCP",
+			"contact": "(+995) 599917987 tpipia@rambler.ru cpgeo@narod.ru",
+			"logo": "/agency/gcp.png",
+			"title": "Unified Communist Party of Georgia",
+			"region": "Georgia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "DKP",
+			"contact": "",
+			"logo": "/agency/dkp.png",
+			"title": "German Communist Party",
+			"region": "Germany",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.dkp.de",
+			"continent": "Europe"
+		}, {
+			"id": "GPC",
+			"contact": "(+59) 0821945 (+59) 0836990 dc500009@exchange.france.ncr.com",
+			"logo": "/agency/gpc.png",
+			"title": "Guadeloupean Communist Party",
+			"region": "France",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "HWP",
+			"contact": "",
+			"logo": "/agency/hwp.png",
+			"title": "Hungarian Workers'Party",
+			"region": "Hungary",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.munkaspart.hu",
+			"continent": "Europe"
+		}, {
+			"id": "CPIE",
+			"contact": "(+353) 16708707 natoffice@communistparty.ie",
+			"logo": "/agency/cpie.png",
+			"title": "Communist Party of Ireland",
+			"region": "Ireland",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.communistpartyofireland.ie",
+			"continent": "Europe"
+		}, {
+			"id": "IWP",
+			"contact": "(+353) 18733916 (+353) 18748702 international@workersparty.ie info@workersparty.ie",
+			"logo": "/agency/iwp.png",
+			"title": "The Workers'Party of Ireland",
+			"region": "Ireland",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.workersparty.ie",
+			"continent": "Europe"
+		}, {
+			"id": "WPI",
+			"contact": "(+44) 2890328663 wpi.international@gmail.com",
+			"logo": "/agency/wpi.png",
+			"title": "The Workers'Party of Ireland",
+			"region": "Ireland",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://workerspartyirelandorg.wordpress.com/",
+			"continent": "Europe"
+		}, {
+			"id": "CPIT",
+			"contact": "internazionale@ilpartitocomunista.it nazionale@ilpartitocomunista.it",
+			"logo": "/agency/.png",
+			"title": "Communist Party (Italy)",
+			"region": "Italy",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://ilpartitocomunista.it/",
+			"continent": "Europe"
+		}, {
+			"id": "PCI",
+			"contact": "(+39) 3319203447 international@ilpartitocomunistaitaliano.it",
+			"logo": "/agency/pci.png",
+			"title": "Italian Communist Party",
+			"region": "Italy",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.ilpartitocomunistaitaliano.it",
+			"continent": "Europe"
+		}, {
+			"id": "PCR",
+			"contact": "(+40) 216423615 (+40) 216423615 pantazipcr@yahoo.com",
+			"logo": "/agency/pcr.png",
+			"title": "Romanian Communist Party",
+			"region": "Romania",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "LSP",
+			"contact": "(+371) 67555535 (+371) 67555535 latsocpartija@inbox.lv",
+			"logo": "/agency/lsp.png",
+			"title": "Socialist Party of Latvia",
+			"region": "Latvia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.latsocpartija.lv",
+			"continent": "Europe"
+		}, {
+			"id": "SP",
+			"contact": "(+370) 67117212 socialistinislf17@gmail.com",
+			"logo": "/agency/sp.png",
+			"title": "Socialist Party",
+			"region": "Lithuania",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://socialistupartija.blogspot.com/",
+			"continent": "Europe"
+		}, {
+			"id": "KPL",
+			"contact": "(+352) 44606621 (+352) 44606666 kpl@zlv.lu aruckert@zlv.lu",
+			"logo": "/agency/kpl.png",
+			"title": "Communist Party of Luxembourg",
+			"region": "Luxembourg",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kp-l.org",
+			"continent": "Europe"
+		}, {
+			"id": "CPM",
+			"contact": "(+35) 621223537 communistpartymalta@gmail.com",
+			"logo": "/agency/cpm.png",
+			"title": "Communist Party of Malta",
+			"region": "Malta",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://communistpartymalta.blogspot.com/",
+			"continent": "Europe"
+		}, {
+			"id": "PCRM",
+			"contact": "(+373) 22249441 (+373) 22233673 info@pcrm.md pcrmcc@gmail.com",
+			"logo": "/agency/pcrm.png",
+			"title": "Party of Communists Of Republic of Moldova",
+			"region": "Moldova",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.pcrm.md/",
+			"continent": "Europe"
+		}, {
+			"id": "NCPN",
+			"contact": "(+31) 206825019 international@ncpn.nl",
+			"logo": "/agency/ncpn.png",
+			"title": "New Communist Party of the Netherlands",
+			"region": "Netherlands",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.ncpn.nl",
+			"continent": "Europe"
+		}, {
+			"id": "CPNM",
+			"contact": "(+389) 23177248 (+389) 23177248 cpmmkd@gmail.com",
+			"logo": "/agency/cpnm.png",
+			"title": "Communist Party of Macedonia",
+			"region": "North Macedonia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "NKP",
+			"contact": "(+47) 22716044 nkp@nkp.no",
+			"logo": "/agency/nkp.png",
+			"title": "Communist Party of Norway",
+			"region": "Norway",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.nkp.no",
+			"continent": "Europe"
+		}, {
+			"id": "KPP",
+			"contact": "(+48) 228334288 (+48) 228334288 int@kompol.org kompol@o2.pl beata_karon@o2.pl",
+			"logo": "/agency/kpp.png",
+			"title": "Communist Party of Poland",
+			"region": "Poland",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kom-pol.org",
+			"continent": "Europe"
+		}, {
+			"id": "PCP",
+			"contact": "http://www.pcp.pt/en (+351) 217813800 (+351) 217969824 internacional@pcp.pt",
+			"logo": "/agency/pcp.png",
+			"title": "Portuguese Communist Party",
+			"region": "Portugal",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.pcp.pt",
+			"continent": "Europe"
+		}, {
+			"id": "PSR",
+			"contact": "(+40) 212522887 (+40) 314057078 (+40) 314057077 (+40) 214133354 contact@pasro.ro gheorghitazbaganu@yahoo.com",
+			"logo": "/agency/psr.png",
+			"title": "Socialist Party",
+			"region": "Romania",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.pasro.ro",
+			"continent": "Europe"
+		}, {
+			"id": "KS",
+			"contact": "(+381) 113514478 komsrb@open.telekom.rs",
+			"logo": "/agency/ks.png",
+			"title": "Communists Of Serbia",
+			"region": "Serbia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.komunistisrbije.rs/",
+			"continent": "Europe"
+		}, {
+			"id": "NKPJ",
+			"contact": "(+381) 112400628 (+381) 112400640 int_nkpj@yahoo.com",
+			"logo": "/agency/nkpj.png",
+			"title": "New Communist Party of Yugoslavia",
+			"region": "Serbia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.nkpj.org.rs",
+			"continent": "Europe"
+		}, {
+			"id": "KSS",
+			"contact": "(+421) 244644101 (+421) 244362540 sekr@kss.sk",
+			"logo": "/agency/kss.png",
+			"title": "Communist Party of Slovakia",
+			"region": "Slovakia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kss.sk",
+			"continent": "Europe"
+		}, {
+			"id": "SPCE",
+			"contact": "(+34) 913004969 (+34) 913004744 internacional@pce.es comitecentral@pce.es",
+			"logo": "/agency/spce.png",
+			"title": "Communist Party of Spain",
+			"region": "Spain",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.pce.es",
+			"continent": "Europe"
+		}, {
+			"id": "PCPE",
+			"contact": "internacional@pcpe.es pcpeinternacional@gmail.com",
+			"logo": "/agency/pcpe.png",
+			"title": "Communist Party of the Peoples of Spain",
+			"region": "Spain",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.pcpe.es",
+			"continent": "Europe"
+		},{
+			"id": "CPS",
+			"contact": "cpswa.org@gmail.com",
+			"logo": "/agency/cps.png",
+			"title": "Communist Party Of Swaziland",
+			"region": "Swaziland",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe"
+		}, {
+			"id": "SKPSE",
+			"contact": "(+46) 87358640 skp@skp.se",
+			"logo": "/agency/skpse.png",
+			"title": "Communist Party of Sweden",
+			"region": "Sweden",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.skp.se",
+			"continent": "Europe"
+		}, {
+			"id": "KNY",
+			"contact": "(+38) 0442380506 (+38) 0442389986 (+38) 0442380506 (+38) 0442389986 cpu.inter.ukraine@gmail.com",
+			"logo": "/agency/kny.png",
+			"title": "Communist Party of Ukraine",
+			"region": "Ukraine",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.kpu.life/",
+			"continent": "Europe"
+		}, {
+			"id": "CKY",
+			"contact": "",
+			"logo": "/agency/cky.png",
+			"title": "Union of Communists of Ukraine",
+			"region": "Ukraine",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://un-comm-ukr.ucoz.ru/",
+			"continent": "Europe"
+		}
+        ]
+    }
+,	
+	
+    {
+        "taxonomy": "中东共运",
+        "icon": "fa-diamond",
+        "links": [
+						{
+			"id": "MLKP",
+			"contact": "",
+			"logo": "/agency/MLKP.jpg",
+			"title": "马列主义共产党(土耳其)",
+			"region": "Turkey",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.mlkp.info",
+			"continent": "Middle East",
+			"desc":"走过半世纪光辉历程的土耳其人民战争，从2012年起，该党向罗贾瓦（叙利亚库尔德斯坦）的人民保护部队派遣志愿者，参与叙利亚内战。2015年6月10日，该党和其它在罗贾瓦协助人民保卫军战斗的左翼团体共同组织了国际自由营。"
+		},		
+		{
+			"id": "IFB",
+			"contact": "",
+			"logo": "/agency/IFB.jpg",
+			"title": "国际自由营",
+			"region": "Turkey",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.facebook.com/InternationalFreedomBattalionRojava",
+			"continent": "Middle East",
+			"desc":"国际自由营是一个活跃于叙利亚的武装团体，由在叙利亚内战中支持罗贾瓦 阵营，对抗伊斯兰国、土耳其军队和叙利亚国民军，与人民保护部队一同战斗的 外国籍左翼战士组成。该团体由土耳其马列主义共产党的成员们发起建立。"
+		},
+		{
+			"id": "",
+			"contact": "",
+			"logo": "",
+			"title": "库尔德工人党",
+			"region": "Turkey",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Middle East",
+			"desc":"库尔德工人党成立于1979年，寻求通过武力在土耳其与伊拉克、伊朗和叙利亚交界处的库尔德人聚居区建立独立国家。目前正与土耳其作战"
+		},	
+		{
+			"id": "EMEP",
+			"contact": "http://en.emep.org http://es.emep.org (+90) 5393281323 (+90) 2125875686 international@emep.org",
+			"logo": "/agency/emep.png",
+			"name": "Labour Party",
+			"title": "土耳其工党",
+			"region": "Turkey",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.emep.org",
+			"continent": "Middle East"
+		},{
+					"id": "TKP",
+					"contact": "(+90) 3124172968 int@tkp.org.tr",
+					"logo": "/agency/tkp.png",
+					"name": "Communist Party Of Turkey",
+					"title": "土耳其共产党",
+					"region": "Turkey",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "https://www.tkp.org",
+					"continent": "Middle East"
+				}, {
+					"id": "DPT",
+					"contact": "(+97) 317780007 (+97) 317780006 fa.almenbar@gmail.com",
+					"logo": "/agency/dpt.png",
+					"title": "Democratic Progressive Tribune",
+					"region": "Bahrain",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.altaqadomi.com/",
+					"continent": "Middle East"
+				}, {
+					"id": "TPI",
+					"contact": "(+44) 7790277770 (+49) 303241627 mardom@tudehpartyiran.org navid.shomali@btinternet.com",
+					"logo": "/agency/tpi.png",
+					"title": "Tudeh Party of Iran",
+					"region": "Iran",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.tudehpartyiran.org",
+					"continent": "Middle East"
+				}, {
+					"id": "KCP",
+					"contact": "(+964) 7504513184 (+964) 7504492282 info_kcp@yahoo.com info_kcp@yahoo.com",
+					"logo": "/agency/kcp.jpg",
+					"title": "Communist Party of Kurdistan-Iraq",
+					"region": "Iraq",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.regaykurdistan.com",
+					"continent": "Middle East"
+				}, {
+					"id": "ICP",
+					"contact": "(+44) 2086422981 salamicp10@gmail.com icpinter@yahoo.co.uk info@iraqicp.com",
+					"logo": "/agency/icp.png",
+					"title": "Iraqi Communist Party",
+					"region": "Iraq",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.iraqicp.com",
+					"continent": "Middle East"
+				}, {
+					"id": "MAKI",
+					"contact": "(+972) 36293944 (+972) 36297263 info@maki.org.il interelations@maki.org.il",
+					"logo": "/agency/maki.png",
+					"title": "Communist Party Of Israel",
+					"region": "Israel",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.maki.org.il",
+					"continent": "Middle East"
+				}, {
+					"id": "JCP",
+					"contact": "(+962) 64624939 (+962) 64624939 jcp@nets.com.jo jcplive@umniahlive.net",
+					"logo": "/agency/jcp.png",
+					"title": "Jordanian Communist Party",
+					"region": "Jordan",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.jocp.org",
+					"continent": "Middle East"
+				}, {
+					"id": "LCP",
+					"contact": "(+961) 1739615 (+961) 1739616 (+961) 1739617 (+961) 1739615 (+961) 1739616 (+961) 1739617 lcparty.lcparty@gmail.com omar.deeb@gmail.com",
+					"logo": "/agency/lcp.png",
+					"title": "Lebanese Communist Party",
+					"region": "Lebanon",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.lcparty.org",
+					"continent": "Middle East"
+				}, {
+					"id": "PALLCP",
+					"contact": "(+97) 92515830 (+97) 22267055 (+97) 222267644 (+97) 92515075 palestinian_cp_alqam@hotmail.com info@pallcp.ps",
+					"logo": "/agency/pallcp.png",
+					"title": "Palestinian Communist Party",
+					"region": "Palestine",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.pallcp.ps",
+					"continent": "Middle East"
+				}, {
+					"id": "PPPPS",
+					"contact": "(+97) 22963593 (+97) 22963592 taqazaqel@yahoo.com",
+					"logo": "/agency/pppps.png",
+					"title": "Palestinian People's Party",
+					"region": "Palestine",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.ppp.ps",
+					"continent": "Middle East"
+				}, {
+					"id": "SYCP",
+					"contact": "(+96) 3114455048 (+96) 3114422716 syriancommunistparty@gmail.com osamah.almaghout@gmail.com",
+					"logo": "/agency/sycp.png",
+					"title": "Syrian Communist Party",
+					"region": "Syria",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "",
+					"continent": "Middle East"
+				}, {
+					"id": "SYRCP",
+					"contact": "(+96) 3114410264 (+96) 3114422383 scp.syria1@gmail.com scp@scparty-unified.com",
+					"logo": "/agency/syrcp.png",
+					"title": "Syrian Communist Party Unified",
+					"region": "Syria",
+					"tags": "communist",
+					"type": "news-agency",
+					"url": "http://www.syrcomparty.org/",
+					"continent": "Middle East"
+				}
+        ]
+    },	
+	
+    {
+        "taxonomy": "非洲共运",
+        "icon": "fa-lightbulb-o",
+        "links": [			{
+				"id": "PADS",
+				"contact": "(+331) 46637607 (+331) 46772082 (+331) 42537882 (+331) 42537882 (+331) 46637607 pads.dz@laposte.net",
+				"logo": "/agency/pads.jpg",
+				"title": "Algerian Party for Democracy and Socialism",
+				"region": "Algeria",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "",
+				"continent": "Africa"
+			}, {
+				"id": "ECP",
+				"contact": "(+20) 101078617 (+20) 223921315 cpegypt@gmail.com",
+				"logo": "/agency/ecp.png",
+				"title": "Egyprian Communist Party",
+				"region": "Egypt",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.cp-egypt.com",
+				"continent": "Africa"
+			}, {
+				"id": "AKFM",
+				"contact": "(+261) 202227065 (+261) 202226828 (+261) 202227065 (+261) 202226828 aakfm@netclub.mg antokonykongresyakfm@gmail.com",
+				"logo": "/agency/akfm.png",
+				"title": "Party of the Congress for the Independence of Madagascar",
+				"region": "Madagascar",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "",
+				"continent": "Africa"
+			}, {
+				"id": "SACP",
+				"contact": "(+27) 113393621 (+27) 113393622 (+27) 113394244 international@sacp.org.za alex@sacp.org.za",
+				"logo": "/agency/sacp.png",
+				"title": "South African Communist Party",
+				"region": "South Africa",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.sacp.org.za",
+				"continent": "Africa"
+			}
+		]
+	
+	},
+    {
+        "taxonomy": "北美洲共运",
+        "icon": "fa-thumbs-up",
+        "links": [
+			{
+				"id": "CA",
+				"contact": "(+14) 164692446 inter@cpc-pcc.ca dgarvie@cpc-pcc.ca",
+				"logo": "/agency/ canada.png",
+				"title": "Communist Party of Canada",
+				"region": "Canada",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.communist-party.ca",
+				"continent": "North America"
+			}, {
+				"id": "PCC",
+				"contact": "(+53) 78605678 (+53) 78593047 europari@cc.cu vjdri@cc.cu",
+				"logo": "/agency/pcc.png",
+				"title": "Communist Party of Cuba",
+				"region": "Cuba",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcc.cu/",
+				"continent": "North America"
+			}, {
+				"id": "PVP",
+				"contact": "(+50) 622258300 (+50) 622810484 vanguardiapopularinternacional@gmail.com partidocomunista1931@gmail.com",
+				"logo": "/agency/pvp.png",
+				"title": "People's Vanguard Party",
+				"region": "Costa Rica",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "",
+				"continent": "North America"
+			}, {
+				"id": "FR",
+				"contact": "(+80) 93336585 Jgomez20@gmail.com r.alvarezc@hotmail.com ofic.rdrifr@gmail.com",
+				"logo": "/agency/fr.png",
+				"title": "Force Of The Revolution",
+				"region": "Dominican Republic",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "https://www.fuerzadelarevolucion.com",
+				"continent": "North America"
+			}, {
+				"id": "PCM",
+				"contact": "(+52) 7343425838 (+52) 7343425838 internacionalpcm@gmail.com",
+				"logo": "/agency/pcm.png",
+				"title": "Communist Party of Mexico",
+				"region": "Mexico",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.comunistas-mexicanos.org",
+				"continent": "North America"
+			}, {
+				"id": "PPS",
+				"contact": "(+52) 55330816 (+52) 55330817 (+52) 55330818 (+52) 55330816 (+52) 55330817 (+52) 55330818 ppsprens@infinitummail.com ppsdn2003@yahoo.com.mx jaogazp@hotmail.com",
+				"logo": "/agency/pps.png",
+				"title": "Popular Socialist Party - National Political Association",
+				"region": "Mexico",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pps.org.mx",
+				"continent": "North America"
+			}, {
+				"id": "PPSM",
+				"contact": "(+52) 556722057 (+52) 556091896 ppsmexico@gmail.com amezcua910@yahoo.com.mx",
+				"logo": "/agency/ppsm.png",
+				"title": "Popular Socialist Party of Mexico",
+				"region": "Mexico",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.ppsm.org.mx",
+				"continent": "North America"
+			}, {
+				"id": "PTP",
+				"contact": "(+507) 2259025 (+507) 2272194 partidodelpueblopa@yahoo.com elpartido@elpartidodelpueblo.org",
+				"logo": "/agency/ptp.png",
+				"title": "Party of The People",
+				"region": "Panama",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.elpartidodelpueblo.org",
+				"continent": "North America"
+			}, {
+				"id": "USACP",
+				"contact": "http://www.cpusa.org https://www.facebook.com/cpusa/ international@cpusa.org",
+				"logo": "/agency/usacp.png",
+				"title": "Communist Party USA",
+				"region": "United States",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.cpusa.org",
+				"continent": "North America"
+			}
+        ]
+    },
+{
+        "taxonomy": "南美洲共运",
+        "icon": "fa-user",
+        "links": [{
+				"id": "PCPPE",
+				"contact": "http://www.pcperuano.com (+511) 4331634 (+511) 4715399 unidad@ec-red.com contacto@pcp.pe pcperuano.rrii@gmail.com",
+				"logo": "/agency/pcppe.png",
+				"title": "Peruvian Communist Party",
+				"region": "Peru",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "https://pcp.pe",
+				"continent": "South America",
+				"desc":"目前，至少有两派自称为秘鲁共产党。为了方便区分，我们分别将其称为秘鲁共产党（重组委员会）和秘鲁共产党（MOVADEF）。秘鲁共产党（重组委员会）就是现在加入了国际共产主义同盟（ICL）的毛主义革命党。秘鲁共产党（MOVADEF）有规模较大的群众组织，拥护贡萨罗，组织过一些群众斗争和解救监狱政治犯的行动。但是，该组织在选举问题上态度暧昧，存在一定右倾风险。"
+			}, {
+				"id": "PCA",
+				"contact": "(+54) 1143040066 (+54) 1143040068 (+54) 1143040068 rriipca@pca.org.ar jkreyness@yahoo.com",
+				"logo": "/agency/pca.png",
+				"title": "Communist Party of Argentina",
+				"region": "Argentina",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pca.org.ar",
+				"continent": "South America"
+			}, {
+				"id": "PCB",
+				"contact": "(+55) 2122620855 (+55) 2122620855 pcb.partidocomunistabrasileiro@gmail.com eg_serra@yahoo.com.br pcb@pcb.org.br",
+				"logo": "/agency/brazilianCP.png",
+				"title": "Brazilian Communist Party",
+				"region": "Brazil",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcb.org.br",
+				"continent": "South America"
+			}, {
+				"id": "PCDOB",
+				"contact": "http://www.vermelho.org.br www.i21.org.br (+55) 1130541800 (+55) 1130541822 (+55) 1130541821 (+55) 1130541848 internacional@pcdob.org.br",
+				"logo": "/agency/pcdob.png",
+				"title": "Communist Party of Brazil",
+				"region": "Brazil",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcdob.org.br",
+				"continent": "South America"
+			}, {
+				"id": "CL",
+				"contact": "(+56) 27295700 (+56) 27295714 internacional@pcchile.cl",
+				"logo": "/agency/chilecp.png",
+				"title": "Communist Party of Chile",
+				"region": "Chile",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcchile.cl/",
+				"continent": "South America"
+			}, {
+				"id": "FARC-EP",
+				"contact": "http://www.pazfarc-ep.org http://www.farc-epeace.org cominiternacional.farc.ep@gmail.com",
+				"logo": "/agency/farc-ep.png",
+				"title": "FARC-EP",
+				"region": "Colombia",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.farc-ep.co",
+				"continent": "South America"
+			}, {
+				"id": "PCE",
+				"contact": "(+593) 22909454 (+593) 42401462 (+593) 422248643 (+593) 997195448 ccentral@pcecuador.org winstoncamp@yahoo.com mariomendoza2004@yahoo.es inter.pcecuador@hotmail.com",
+				"logo": "/agency/pce.png",
+				"title": "Communist Party Of Ecuador",
+				"region": "Ecuador",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://pcecuador.org/",
+				"continent": "South America"
+			}, {
+				"id": "PCS",
+				"contact": "elsalvadorpc@hotmail.com",
+				"logo": "/agency/pcs.png",
+				"title": "Communist Party of El Salvador",
+				"region": "El Salvado",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "",
+				"continent": "South America"
+			}, {
+				"id": "PPP",
+				"contact": "(+592) 2272095 (+592) 2274301 (+592) 2274302 (+592) 2272096 (+592) 2278765 gensecppp@gmail.com",
+				"logo": "/agency/ppp.png",
+				"title": "People's Progressive Party",
+				"region": "Guyana",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pppguyana.org",
+				"continent": "South America"
+			}, {
+				"id": "PCPA",
+				"contact": "(+595) 21225116 (+595) 972624390 (+595) 21621836 (+595) 21621836 inter@pcparaguay.org rrii@pcparaguay.org",
+				"logo": "/agency/pcpa.png",
+				"title": "Paraguayan Communist Party",
+				"region": "Paraguay",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcparaguay.org/",
+				"continent": "South America"
+			}, {
+				"id": "Patria Roja",
+				"contact": "(+511) 4262366 (+511) 99386928 pcdelp@patriaroja.org.pe partidosec@yahoo.com amorenor@speedy.com.pe",
+				"logo": "/agency/patriaroja.png",
+				"title": "Communist Party of Peru",
+				"region": "Peru",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.patriaroja.org.pe/",
+				"continent": "South America"
+			}, {
+				"id": "PCU",
+				"contact": "(+59) 829242697 (+59) 829247056 (+59) 829242697 (+59) 829247056 pcuinternacional@montevideo.com.uy partidocomunista@adinet.com.uy profdcoira@gmail.com info@pcu.org.uy",
+				"logo": "/agency/pcu.png",
+				"title": "Communist Party of Uruguay",
+				"region": "Uruguay",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcu.org.uy/",
+				"continent": "South America"
+			}, {
+				"id": "PCV",
+				"contact": "http://prensa-pcv.blogspot.com/ https://prensapcv.wordpress.com/ (+58) 2122566386 (+58) 2122566386 internacional.pcvenezuela@gmail.com carolus1111@yahoo.com",
+				"logo": "/agency/pcv.png",
+				"title": "Communist Party of Venezuela",
+				"region": "Venezuela",
+				"tags": "communist",
+				"type": "news-agency",
+				"url": "http://www.pcv-venezuela.org",
+				"continent": "South America"
+			}
+		]
+	}
+,
+    {
+        "taxonomy": "大洋洲共运",
+        "icon": "fa-user",
+        "links": [{
+			"id": "ACC",
+			"contact": "international@cpa.org.au cpa@cpa.org.au",
+			"logo": "/agency/acc.png",
+			"title": "Communist Party of Australia",
+			"region": "Australia",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "http://www.cpa.org.au",
+			"continent": "Oceania"
+			}
+		]
+	},
+	    {
+        "taxonomy": "国际协调",
+        "icon": "fa-user",
+        "links": [{
+			"id": "icor",
+			"contact": "",
+			"logo": "/agency/ICOR.jpg",
+			"title": "革命政党与组织国际协调",
+			"region": "world",
+			"tags": "",
+			"type": "",
+			"url": "https://www.icor.info/",
+			"continent": "world",
+			"desc":"革命政党和组织国际协调（英語：，缩写为ICOR）是一个由40多个“自治、独立和自力更生的”共产主义政党和组织（大多奉行反修正主义）组成的国际政党组织。"
+			},
+					{
+			"id": "Lotta",
+			"contact": "",
+			"logo": "/agency/Logo_lotta_comunista.png",
+			"name": "Lotta Comuunista",
+			"title": "Lotta Comuunista",
+			"region": "Greece",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "",
+			"continent": "Europe",
+			"desc":"Lotta Comunista从未实施或支持过各种形式的武装斗争，即使在1960年代和1970年代也没有，因为它坚持认为，如果没有全球资本主义的危机以及列宁主义理论和实践的根基，革命就不可能发生。该党的已经在在欧洲一些社区、工厂和大学的组织层面上扎根"
+		},{
+			"id": "",
+			"contact": "",
+			"logo": "/agency/IMT.svg",
+			"name": "",
+			"title": "国际马克思主义趋势",
+			"region": "Greece",
+			"tags": "communist",
+			"type": "news-agency",
+			"url": "https://www.marxist.com/",
+			"continent": "Europe",
+			"desc":"国际马克思主义趋势坚持正统托洛茨基主义。同时采取“打入主义”策略，曾经成功渗透英国工党。"
+		},
+			{
+			"id": "solidnet",
+			"contact": "",
+			"logo": "/agency/solidnet.png",
+			"title": "共产党和工人党国际会议（IMCWP）官网——团结网",
+			"region": "",
+			"tags": "",
+			"type": "",
+			"url": "http://www.solidnet.org/",
+			"continent": "world",
+			"desc":"2023年10月19日至22日，第23届共产党和工人党国际会议（IMCWP）举行。会议由土耳其共产党（TKP）在土耳其伊兹密尔主办。来自54个国家的68个缔约方的121名代表出席了会议，7个因各种原因未能出席的缔约方也发来了问候。会议的主题是：与资本家和帝国主义对抗的政治和意识形态斗争。共产党人的任务是宣传和动员工人阶级、青年、妇女和知识分子进行反对剥削、压迫、帝国主义谎言和历史修正主义的斗争;为了工人和人民的社会和民主权利;反对军国主义和战争，反对和平和社会主义。"
+			}
+			
+		]
+	}
+
+]

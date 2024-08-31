@@ -1,0 +1,96 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; width: 0; height: 0" aria-hidden="true" id="__SVG_SPRITE_NODE__"><symbol xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" id="icon-planProject"><path d="M192 480a4.5 4.5 0 1 0 576 0 4.5 4.5 0 1 0-576 0z"></path></symbol></svg>
+
+	<script>		
+	progress='';
+	progresss=[4,{'title':'两会专题: 人大策划','url':'/url/?/authors/bachelor/giorgia-2/'},{'title':'国务院各大部委数据挖掘','url':'/url/?/authors/Bachelor/gov'},{'title':'重要的议案和提案','url':'/url/?/authors/bachelor/优秀的人大议案'},{'title':'议案特征——利益关联','url':'/url/?/authors/Bachelor/机器学习提取议案特征'},{'title':'参与立法征求意见','url':''},{'title':'社交媒体联系代表','url':''},{'title':'社会新闻动态预警','url':''},{'title':'财产公示','url':''}];
+	if (progresss) {
+	　　　　for (let i = 1; i < (progresss.length-1); i++) {
+		progress += `<div class="el-step is-horizontal"><div class="el-step__head ${ i <= progresss[0] ? "is-process" : "is-wait"} "><div class="el-step__line"><i class="el-step__line-inner"></i></div><div class="el-step__icon is-text"><svg d="" aria-hidden="true" class="planSvg svg-icon"><use d="" xlink:href="#icon-planProject"></use></svg></div></div><div class="el-step__main"><div class="el-step__title is-process"></div><div class="el-step__description is-process" ><a href="${ progresss[i]['url'] ? progresss[i]['url'] : ""}" title=${ progresss[i]['title'] ? progresss[i]['title'] : ""} target="_blank" rel="noopener noreferrer me" class=${ i <= progresss[0] ? "red" : ""}>${ progresss[i]['title'] ? progresss[i]['title'] : ""}</a></div></div></div>`;
+		}; 
+		progress += `<div class="el-step is-horizontal"><div class="el-step__head ${ progresss[0] < progresss.length ? "is-wait" : "is-process"}"><div class="el-step__icon is-text"><svg d="" aria-hidden="true" class="planSvg svg-icon"><use d="" xlink:href="#icon-planProject"></use></svg></div></div><div class="el-step__main"><div class="el-step__title is-process"></div><div class="el-step__description is-process" ><a href="${ progresss[progresss.length-1]['url'] ? progresss[progresss.length-1]['url'] : ""}" title=${ progresss[progresss.length-1]['title'] ? progresss[progresss.length-1]['title'] : ""} target="_blank" rel="noopener noreferrer me" >${ progresss[progresss.length-1]['title'] ? progresss[progresss.length-1]['title'] : ""}</a></div></div></div>`;
+	};
+	</script>	
+
+
+
+<div class="page home archive" data-home="posts">
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp; 代表委员<sup >{{ len $pages }}</sup></a>				
+			</h2>
+<div class="home-profile">
+					<div data-v-cbeafc6a="" class="projectMain" style="color: rgb(0, 0, 0); background-color: #fff; box-shadow: 0px 4px 8px rgba(5, 10, 15, 5%), 0px 7px 13px -3px rgba(5, 10, 15, 30%); font-size: 16px; line-height: 18.4px; margin: 0; padding: 0; position: static; float: none; inset: auto; display: flex; border: 0px none rgb(0, 0, 0); cursor: auto; overflow: visible; box-sizing: border-box; border-radius: 0px; text-decoration: none solid rgb(0, 0, 0); list-style: outside none disc; text-align: start;"><div data-v-cbeafc6a="" class="content-right" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 851.891px; *//* height: 251.992px; */font-size: 16px;line-height: 18.4px;margin: 0px;padding: 15px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div data-v-cbeafc6a="" class="content-text-title" style="color: rgb(0, 0, 0);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);/* width: 805.062px; */height: 146.797px;font-size: 16px;line-height: 18.4px;margin: 0px 0px 20px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(0, 0, 0);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(0, 0, 0);list-style: outside none disc;text-align: start;"><div data-v-cbeafc6a="" class="content-plan" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 136.797px;font-size: 16px;line-height: 18.4px;margin: 10px 0px 0px;padding: 0px;position: static;float: none;inset: auto;display: block;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;"><div data-v-cbeafc6a="" class="content-plan-top" style="color: rgb(82, 82, 82);background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);height: 60px;font-size: 16px;line-height: 18.4px;margin: 0px;padding: 0px;position: static;float: none;inset: auto;display: flex;border: 0px none rgb(82, 82, 82);cursor: auto;overflow: visible;box-sizing: border-box;border-radius: 0px;text-decoration: none solid rgb(82, 82, 82);list-style: outside none disc;text-align: start;"><h1>
+                                        数字监督: 这是一个对人大和政协进行监督的策划。我们在追踪各位代表提过的议案。
+                                     <a href="https://t.me/+vPLshmMs1gYzZjQ1" title="Telegram" target="_blank" rel="noopener noreferrer me" class="red"><i class="fab fa-telegram-plane fa-fw "></i>加入我们</a></h1></div> <span>项目进度：</span><div class="el-steps el-steps--horizontal" id='progress'>									 </div>				 
+									 </div></div> <div class="content-text-descript"><p>
+                                项目描述：我们认为群众监督不一定只能通过政治权力自上而下的赋予或者确认来实现，如果我们可以改变信息的单向透明，打破立法神秘主义这个黑匣子，我们无形之间就改变了阶级力量的对比。
+                            </p></div></div><h2 class="animate__animated animate__pulse animate__faster" style="flex: 1;font-size: 1.25rem;font-weight: bold;text-align: center;">	
+								<a href="/tags" style="line-height: normal;">代表委员<sup id="sup" >0</sup></a>				
+			</h2></div>
+</div>
+<script> document.getElementById("progress").innerHTML=progress </script>
+
+
+    <div class="home  tag-cloud-tags" id="test"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+        {{- /* Profile */ -}}
+
+
+
+
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- /* $pages := where .Site.RegularPages "Type" "posts" */ -}}
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- with $posts.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+				
+            {{- range $pages.Pages -}}
+                
+				{{- .Render "summary" -}}	
+								
+            {{- end -}}
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+</div>
+
+	<script>		
+		url=''
+		async function getUpdatedTags() {
+			const data = await fetch( {{ $.Site.Params.dataURL }} + 'count?bills='+'tags')
+			const comments = await data.json();
+			const commentsDiv=document.getElementById("test")
+
+			var testhtml='';
+			<!-- console.log(numArr)  -->		
+			for (var key in comments) {
+			　　var num = comments[key];
+					testhtml = `<a id="${key}" href="/news/?tags=${key}">${key}<sup>${num}</sup></a>`+ testhtml;
+			}
+			var sup = document.getElementById("sup");
+			sup.innerText=Object.keys(comments).length;
+			commentsDiv.innerHTML = testhtml+ commentsDiv.innerHTML;
+
+		}
+		
+		getUpdatedTags();
+	
+	</script>			
+
+{{- end -}}
+
+

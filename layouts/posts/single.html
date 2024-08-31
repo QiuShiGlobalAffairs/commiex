@@ -1,0 +1,141 @@
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+<div class="container">
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $password := $params.password | default "" -}}
+    {{- if ne $password "" -}}
+		<script>
+			(function(){
+				if({{ $password }}){
+					if (prompt('password required') != {{ $password }}){
+						alert('wrong code');
+						if (history.length === 1) {
+							window.opener = null;
+							window.open('', '_self');
+							window.close();
+						} else {
+							history.back();
+						}
+					}
+				}
+			})();
+		</script>
+    {{- end -}}
+
+    {{- $toc := $params.toc -}}
+    {{- if eq $toc true -}}
+        {{- $toc = .Site.Params.page.toc | default dict -}}
+    {{- else if eq $toc false -}}
+        {{- $toc = dict "enable" false -}}
+    {{- end -}}
+
+    {{- /* Auto TOC */ -}}
+    {{- if ne $toc.enable false -}}
+        <div class="toc" id="toc-auto">
+            <h2 class="toc-title">{{ T "contents" }}</h2>
+            <div class="toc-content{{ if eq $toc.auto false }} always-active{{ end }}" id="toc-content-auto"></div>
+        </div>
+    {{- end -}}
+
+    <article class="page single">
+        {{- /* Title */ -}}
+        <h1 class="single-title animate__animated animate__flipInX">{{ .Title | emojify }}</h1>
+
+        {{- /* Subtitle */ -}}
+        {{- with $params.subtitle -}}
+            <h2 class="single-subtitle">{{ . }}</h2>
+        {{- end -}}
+
+        {{- /* Meta */ -}}
+        <div class="post-meta">
+            <div class="post-meta-line post-tags post-category">
+                {{- $author := $params.author | default .Site.Author.name | default (T "author") -}}
+                {{- $authorLink := $params.authorlink | default .Site.Author.link | default .Site.Home.RelPermalink -}}
+                <span class="post-author">
+					{{- partial "meta/author.html" . }}
+                </span>
+
+
+				
+				<i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;
+					{{- $regions := slice -}}
+					{{- range .Params.regions -}}
+					{{- $regions := partialCached "function/path.html" . . | printf "/regions/%v" | $.Site.GetPage -}}
+							
+					<span class="">										
+					<a href="{{$regions.RelPermalink}}">{{$regions.Title}},&nbsp;</a>
+					</span>
+					{{- end -}}		
+					
+					{{- with .Params.countries -}}
+					{{- range $index, $value := . -}}
+						{{- if gt $index 0 }},&nbsp;{{ end -}}
+						{{- $country := partialCached "function/path.html" $value $value | printf "/countries/%v" | $.Site.GetPage -}}
+						<a href="{{ $country.RelPermalink }}">{{ $country.Title }},&nbsp;</a>
+					{{- end -}}
+					{{- end -}}										
+					
+					
+					{{- with .Params.tags -}}
+					{{- range $index, $value := . -}}
+						{{- if gt $index 0 }},&nbsp;{{ end -}}
+						{{- $tag := partialCached "function/path.html" $value $value | printf "/tags/%v" | $.Site.GetPage -}}
+						<a href="{{ $tag.RelPermalink }}">{{ $tag.Title }}</a>
+					{{- end -}}
+					{{- end -}}
+
+				
+            </div>
+            <div class="post-meta-line">
+                {{- with .Site.Params.dateformat | default "2006-01-02" | .PublishDate.Format -}}
+                    <i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="{{ . }}">{{ . }}</time>&nbsp;
+                {{- end -}}
+                <i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;{{ T "wordCount" .WordCount }}&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;{{ T "readingTime" .ReadingTime }}&nbsp;
+                {{- $comment := .Scratch.Get "comment" | default dict -}}
+                {{- if $comment.enable | and $comment.valine.enable | and $comment.valine.visitor -}}
+                    <span id="{{ .RelPermalink }}" class="leancloud_visitors" data-flag-title="{{ .Title }}">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;{{ T "views" }}
+                    </span>&nbsp;
+                {{- end -}}
+            </div>
+        </div>
+
+        {{- /* Featured image */ -}}
+        {{- $image := $params.featuredimage -}}
+        {{- with .Resources.GetMatch "featured-image" -}}
+            {{- $image = .RelPermalink -}}
+        {{- end -}}
+        {{- with $image -}}
+            <div class="featured-image">
+                {{- dict "Src" . "Title" $.Description "Resources" $.Resources | partial "plugin/image.html" -}}
+            </div>
+        {{- end -}}
+
+        {{- /* Static TOC */ -}}
+        {{- if ne $toc.enable false -}}
+            <div class="details toc" id="toc-static"  data-kept="{{ if $toc.keepStatic }}true{{ end }}">
+                <div class="details-summary toc-title">
+                    <span>{{ T "contents" }}</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static">
+                    {{- dict "Content" .TableOfContents "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                </div>
+            </div>
+        {{- end -}}
+
+        {{- /* Content */ -}}
+        <div class="content" id="content">
+            {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+        </div>
+
+        {{- /* Footer */ -}}
+        {{- partial "single/footer.html" . -}}
+
+        {{- /* Comment */ -}}
+        {{- partial "comment.html" . -}}
+    </article>
+</div>
+{{- end -}}

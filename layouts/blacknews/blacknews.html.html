@@ -1,0 +1,135 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+	<link rel="stylesheet" href="/js/nanoscroller.css"> 
+	<script>		
+	url = {{ $.Site.Params.dataURL }}  + 'newslist'+ window.location.search;
+	types = 'news'
+	</script>			
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/nanoscroller.js"></script>
+
+<div class="page home" data-home="news">		
+			<h2 class="sing animate__animated animate__pulse animate__faster" style="width:100%; text-align: right; margin: 0; padding: 0;">	
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}			
+				<a href="/tags" ><i class="fas fa-tag fa-fw"></i>&nbsp;{{- .Params.Title | default (T .Section) | default .Section | dict "Some" | T "allSome" -}}<sup id="sup" >{{ len $pages }}</sup></a>				
+			</h2>
+			{{- /* partial "home/newslist.html" . */ -}}
+			<div class="home-profile">
+					<div class="links"><a href="?author=bachelor" title="CNN" ><i class="fab fa-github-alt fa-fw"></i></a><a href="?author=Bachelor" title="BBC" ><i class="fab fa-twitter fa-fw"></i></a><a href="https://weibo.com/6392027557" title="WSJ" ><i class="fab fa-weibo fa-fw"></i></a><a href="https://www.zhihu.com/people/feng-mei-li-you" title="知乎" ><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-svg-src="/lib/simple-icons/icons/zhihu.min.svg" class="icon"><path d="M5.721.0C2.251.0.0 2.25.0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75.0 18.281.0zm1.964 4.078c-.271.73-.5 1.434-.68 2.11h4.587c.545-.006.445 1.168.445 1.171H9.384a58.104 58.104.0 01-.112 3.797h2.712c.388.023.393 1.251.393 1.266H9.183a9.223 9.223.0 01-.408 2.102l.757-.604c.452.456 1.512 1.712 1.906 2.177.473.681.063 2.081.063 2.081l-2.794-3.382c-.653 2.518-1.845 3.607-1.845 3.607-.523.468-1.58.82-2.64.516 2.218-1.73 3.44-3.917 3.667-6.497H4.491c0-.015.197-1.243.806-1.266h2.71c.024-.32.086-3.254.086-3.797H6.598c-.136.406-.158.447-.268.753-.594 1.095-1.603 1.122-1.907 1.155.906-1.821 1.416-3.6 1.591-4.064.425-1.124 1.671-1.125 1.671-1.125zM13.078 6h6.377v11.33h-2.573l-2.184 1.373-.401-1.373h-1.219zm1.313 1.219v8.86h.623l.263.937 1.455-.938h1.456v-8.86z"></path></svg></a>
+					<a href="https://space.bilibili.com/19585141" title="bilibili" ><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-svg-src="/svg/icons/bilibili.min.svg" class="icon"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858.0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234.0 01-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373s.653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836.0 01.16-.213l2.853-2.747c.267-.249.573-.373.92-.373s.662.151.929.4.391.551.391.907c0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373.0.684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373.0.684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"></path></svg></a>
+					
+					<a href="mailto:intlcommu@outlook.com" title="Email" rel="me"><i class="far fa-envelope fa-fw"></i></a>
+					<a href="/index.xml" title="RSS" ><i class="fas fa-rss fa-fw"></i></a></div>
+				</div>
+</div>
+
+    <div class="page home" id="test"{{ if ne $posts.enable false }} data-home="news"{{ end }}>
+        {{- /* Profile */ -}}
+
+
+
+
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            {{- /* Paginate */ -}}
+            {{- /* $pages := where .Site.RegularPages "Type" "posts" */ -}}
+			{{- $pages := where .Site.RegularPages "Params.multitype" "intersect" (slice "tags") -}}
+            {{- if .Site.Params.page.hiddenFromHomePage -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+            {{- else -}}
+                {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+            {{- end -}}
+            {{- with $posts.paginate | default .Site.Params.paginate -}}
+                {{- $pages = $.Paginate $pages . -}}
+            {{- else -}}
+                {{- $pages = .Paginate $pages -}}
+            {{- end -}}
+				
+            {{- range $pages.Pages -}}
+                
+				{{- .Render "summary" -}}	
+								
+            {{- end -}}
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+	<script>
+
+
+	  function refresh(a,b) {
+		var query=a+'='+b;
+		url = 'https://internationalcommunism.com/db/newslist'+ '?'+query;
+		fetch('https://internationalcommunism.com/db/refresh', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json'
+		  },
+		  body: query
+		})
+		.then(response => response.json())
+		.then(data => update(data))
+		.catch(error => console.error(error));
+	};
+	document.addEventListener('DOMContentLoaded', (event) => {
+    $(".nano").nanoScroller();
+  });
+  
+  </script>	
+<script>
+function timestampFormat(timestamp) {
+    function zeroize(num) {
+        return (String(num).length == 1 ? '0' : '') + num;
+    }
+    var curTimestamp = parseInt(new Date().getTime() / 1000); //当前时间戳
+    var timestampDiff = curTimestamp - timestamp; // 参数时间戳与当前时间戳相差秒数
+    var curDate = new Date(curTimestamp * 1000); // 当前时间日期对象
+    var tmDate = new Date(timestamp * 1000); // 参数时间戳转换成的日期对象
+    var Y = tmDate.getFullYear(),
+        m = tmDate.getMonth() + 1,
+        d = tmDate.getDate();
+    var H = tmDate.getHours(),
+        i = tmDate.getMinutes(),
+        s = tmDate.getSeconds();
+    if (timestampDiff < 120) { // 一分钟以内
+        return "few seconds ago";
+    } else if (timestampDiff < 3600) { // 一小时前之内
+        return Math.floor(timestampDiff / 60) + "mins ago";
+    } else if (curDate.getFullYear() == Y && curDate.getMonth() + 1 == m && curDate.getDate() == d) {
+        return 'updated today ' + zeroize(H) + ':' + zeroize(i);
+    } else {
+        var newDate = new Date((curTimestamp - 86400) * 1000); // 参数中的时间戳加一天转换成的日期对象
+        if (newDate.getFullYear() == Y && newDate.getMonth() + 1 == m && newDate.getDate() == d) {
+            return 'updated yesterday ' + zeroize(H) + ':' + zeroize(i);
+        } else if (curDate.getFullYear() == Y) {
+            return zeroize(m) + '-' + zeroize(d) + '- ' + zeroize(H) + ':' + zeroize(i);
+        } else {
+            return Y + '-' + zeroize(m) + '-' + zeroize(d) + ' ' + zeroize(H) + ':' + zeroize(i);
+        }
+    }
+}
+</script>	 
+<script>
+  function update(comments) {
+	var commentsDiv=document.getElementById("test");
+	var testhtml=commentsDiv.innerHTML
+	comment=comments[0];
+	var liststr = "";	
+	if (comment.titles) {
+　　　　for (let i = 0; i < comment.titles.length; i++) {
+			liststr = `<div style="display: inline-block;width: 100%;"> <span class="grey" >${comment.titles.length-i}&nbsp</span> <a href=${comment.links[i]} target="_blank" >${comment.titles[i]}</a>${comment.tags ? '<a href=/news/?tags=' + comment.tags[i] +'><span style="float:right;">' +comment.tags[i]+'</span></a>' : ''}  </div>` + liststr
+			}; 
+			comment.liststr=liststr;
+		};	
+	var sum= `<h1 class="single-title" itemprop="name headline"> <a href="${comment.url}" target="_blank"><img src=${comment.avatar} alt="avatar" class="avatar">&nbsp<span >${comment.author}</span></a> <span style="float:right;">${comment.columns ? comment.columns : ''}<i style="float:right,font-size: 1rem;" onclick="refresh('url','${comment.url}')" class="far fa-redo-alt fa-fw" style="font-size:18px" aria-hidden="true"></i></span> </h1><div class="nano" style="display:inline-block;height: 240px;overflow: hidden;overflow: scroll;"> <div class="nano-content post-tags post-category"> ${comment.liststr} </div> </div> <div class="" > <div class="post-tags post-category grey"> ${timestampFormat(comment.updatehistory)} <span style="float:right;"></span> </div> </div> `;
+	if (document.getElementById(comment.url)!=null){
+		document.getElementById(comment.url).innerHTML= sum
+		} else {sup.innerText++;
+		testhtml =  `<article class="single summary2" ripple="rgba(0,0,0,0.1)" id=${comment.url}> ${sum} </article>` + testhtml;
+	}						
+}; 
+</script>	
+{{- end -}}
+
+
