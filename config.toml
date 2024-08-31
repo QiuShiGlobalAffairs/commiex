@@ -272,7 +272,7 @@ enableEmoji = true
         pre = "<i class='fab fa-github fa-fw'></i>"
         post = ""
         name = ""
-        url = "https://github.com/QiuShiGlobalAffairs"
+        url = "https://github.com/QiuShiGlobalAffairs/commiex"
         title = "GitHub"
         weight = 12	
 		
